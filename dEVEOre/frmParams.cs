@@ -15,11 +15,12 @@ namespace dEVEOre
         // Parameters
         private int cycle;
         private int yield;
-        private double refineOutput;
+        private double netYield;
+        private double taxes;
         private frmMain parent;
 
         // Methods
-        public frmParams(int cycle, int yield, double refineOutput, frmMain parent)
+        public frmParams(int cycle, int yield, double netYield, double taxes, frmMain parent)
         {
             InitializeComponent();
 
@@ -27,11 +28,13 @@ namespace dEVEOre
 
             this.cycle = cycle;
             this.yield = yield;
-            this.refineOutput = refineOutput;
+            this.netYield = netYield;
+            this.taxes = taxes;
 
             this.txtCycle.Text = cycle.ToString();
             this.txtYield.Text = yield.ToString();
-            this.txtRefineOutput.Text = refineOutput.ToString(CultureInfo.InvariantCulture);
+            this.txtRefineOutput.Text = netYield.ToString(CultureInfo.InvariantCulture);
+            this.txtTaxes.Text = taxes.ToString(CultureInfo.InvariantCulture);
         }
 
         private void frmParams_Load(object sender, EventArgs e)
@@ -45,9 +48,10 @@ namespace dEVEOre
             {
                 this.cycle = int.Parse(this.txtCycle.Text);
                 this.yield = int.Parse(this.txtYield.Text);
-                this.refineOutput = double.Parse(this.txtRefineOutput.Text, CultureInfo.InvariantCulture);
+                this.netYield = double.Parse(this.txtRefineOutput.Text, CultureInfo.InvariantCulture);
+                this.taxes = double.Parse(this.txtTaxes.Text, CultureInfo.InvariantCulture);
 
-                this.parent.SetParams(this.cycle, this.yield, this.refineOutput);
+                this.parent.SetParams(this.cycle, this.yield, this.netYield, this.taxes);
                 this.parent.SaveConfig(frmMain.CONFIG_FILE_PATH);
             }
             catch (Exception ex)

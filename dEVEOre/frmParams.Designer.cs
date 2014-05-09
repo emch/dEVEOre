@@ -36,6 +36,8 @@
             this.txtCycle = new System.Windows.Forms.TextBox();
             this.txtYield = new System.Windows.Forms.TextBox();
             this.txtRefineOutput = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtTaxes = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -61,22 +63,22 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(27, 70);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 13);
+            this.label3.Size = new System.Drawing.Size(99, 13);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Yield (in m3):";
+            this.label3.Text = "Mining yield (in m3):";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(27, 96);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(102, 13);
+            this.label4.Size = new System.Drawing.Size(111, 13);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Refine output (in %):";
+            this.label4.Text = "Refine net yield (in %):";
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(166, 129);
+            this.btnSave.Location = new System.Drawing.Point(166, 146);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 4;
@@ -108,11 +110,30 @@
             this.txtRefineOutput.TabIndex = 7;
             this.txtRefineOutput.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(27, 123);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(113, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "NPC Corp taxes (in %):";
+            // 
+            // txtTaxes
+            // 
+            this.txtTaxes.Location = new System.Drawing.Point(141, 120);
+            this.txtTaxes.Name = "txtTaxes";
+            this.txtTaxes.Size = new System.Drawing.Size(100, 20);
+            this.txtTaxes.TabIndex = 9;
+            this.txtTaxes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // frmParams
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(255, 162);
+            this.ClientSize = new System.Drawing.Size(255, 182);
+            this.Controls.Add(this.txtTaxes);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.txtRefineOutput);
             this.Controls.Add(this.txtYield);
             this.Controls.Add(this.txtCycle);
@@ -141,5 +162,7 @@
         private System.Windows.Forms.TextBox txtCycle;
         private System.Windows.Forms.TextBox txtYield;
         private System.Windows.Forms.TextBox txtRefineOutput;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtTaxes;
     }
 }

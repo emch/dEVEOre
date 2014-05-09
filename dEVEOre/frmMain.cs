@@ -19,7 +19,8 @@ namespace dEVEOre
 
         private int         cycle; // in seconds
         private int         yield;
-        private double      refineOutput; // in percents
+        private double      netYield; // in percents
+        private double      taxes; // in percents
 
         private int         currentSystem;
 
@@ -50,7 +51,7 @@ namespace dEVEOre
 
         private void characterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.frmParams = new frmParams(this.cycle, this.yield, this.refineOutput, this);
+            this.frmParams = new frmParams(this.cycle, this.yield, this.netYield, this.taxes, this);
             this.frmParams.Show();
         }
 
@@ -65,11 +66,12 @@ namespace dEVEOre
             this.updateTimer = seconds;
         }
 
-        public void SetParams(int cycle, int yield, double refineOutput)
+        public void SetParams(int cycle, int yield, double netYield, double taxes)
         {
             this.cycle = cycle;
             this.yield = yield;
-            this.refineOutput = refineOutput;
+            this.netYield = netYield;
+            this.taxes = taxes;
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -91,7 +93,8 @@ namespace dEVEOre
                     this.updateTimer = int.Parse(split[0]);
                     this.cycle = int.Parse(split[1]);
                     this.yield = int.Parse(split[2]);
-                    this.refineOutput = double.Parse(split[3],CultureInfo.InvariantCulture);
+                    this.netYield = double.Parse(split[3], CultureInfo.InvariantCulture);
+                    this.taxes = double.Parse(split[4], CultureInfo.InvariantCulture);
                 }
             }
             catch //(Exception ex)
@@ -100,10 +103,11 @@ namespace dEVEOre
                 this.updateTimer = 30;
                 this.cycle = 60;
                 this.yield = 202;
-                this.refineOutput = 85.27;
+                this.netYield = 85.00;
+                this.taxes = 4.45;
 
                 // Saving these values to config file
-                String saveString = this.updateTimer.ToString() + " " + this.cycle.ToString() + " " + this.yield.ToString() + " " + this.refineOutput.ToString(CultureInfo.InvariantCulture);
+                String saveString = this.updateTimer.ToString() + " " + this.cycle.ToString() + " " + this.yield.ToString() + " " + this.netYield.ToString(CultureInfo.InvariantCulture) + " " + this.taxes.ToString(CultureInfo.InvariantCulture);
                 TextWriter tw = new StreamWriter(CONFIG_FILE_PATH);
                 tw.WriteLine(saveString);
                 tw.Close();
@@ -112,7 +116,7 @@ namespace dEVEOre
 
         public void SaveConfig(String path)
         {
-            String saveString = this.updateTimer.ToString() + " " + this.cycle.ToString() + " " + this.yield.ToString() + " " + this.refineOutput.ToString(CultureInfo.InvariantCulture);
+            String saveString = this.updateTimer.ToString() + " " + this.cycle.ToString() + " " + this.yield.ToString() + " " + this.netYield.ToString(CultureInfo.InvariantCulture) + " " + this.taxes.ToString(CultureInfo.InvariantCulture);
             TextWriter tw = new StreamWriter(CONFIG_FILE_PATH);
             tw.WriteLine(saveString);
             tw.Close();

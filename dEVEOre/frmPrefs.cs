@@ -36,6 +36,7 @@ namespace dEVEOre
             {
                 this.updateTimerSetting = int.Parse(this.cmbTimerSetting.Text);
                 this.parent.SetUpdateTimer(this.updateTimerSetting);
+                this.parent.SaveConfig(frmMain.CONFIG_FILE_PATH);
             }
             catch(Exception ex)
             {

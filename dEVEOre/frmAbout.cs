@@ -9,16 +9,11 @@ using System.Windows.Forms;
 
 namespace dEVEOre
 {
-    public partial class frmOre : Form
+    public partial class frmAbout : Form
     {
-        public frmOre()
+        public frmAbout()
         {
             InitializeComponent();
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Hide();
         }
     }
 }

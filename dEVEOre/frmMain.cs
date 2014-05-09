@@ -12,14 +12,17 @@ namespace dEVEOre
     public partial class frmMain : Form
     {
         // Parameters
-        private int     updateTimer;
-        private int     cycle;
-        private int     yield;
-        private double  refineSkill;
+        private int         updateTimer; // in minutes
+        private int         lastUpdate;
 
-        private Form    frmOre;
-        private Form    frmStats;
-        private Form    frmPrefs;
+        private int         cycle;
+        private int         yield;
+        private double      refineSkill;
+
+        private int         currentSystem;
+
+        private Form        frmStats;
+        private frmPrefs    frmPrefs;
 
         // Methods
         public frmMain()
@@ -27,13 +30,7 @@ namespace dEVEOre
             InitializeComponent();
 
             // Load data files in objects or default config if inexistant
-            this.updateTimer = 60; // read in config.cfg
-        }
-
-        private void oreTableToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.frmOre = new frmOre();
-            this.frmOre.Show();
+            this.updateTimer = 15; // read in config.cfg
         }
 
         private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -45,6 +42,11 @@ namespace dEVEOre
         public void SetUpdateTimer(int seconds)
         {
             this.updateTimer = seconds;
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

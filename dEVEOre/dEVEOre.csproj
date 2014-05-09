@@ -49,11 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmOre.cs">
+    <Compile Include="frmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmOre.Designer.cs">
-      <DependentUpon>frmOre.cs</DependentUpon>
+    <Compile Include="frmAbout.Designer.cs">
+      <DependentUpon>frmAbout.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -71,11 +71,11 @@
     <Compile Include="Ore.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAbout.resx">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmOre.resx">
-      <DependentUpon>frmOre.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrefs.resx">
       <DependentUpon>frmPrefs.cs</DependentUpon>

@@ -35,12 +35,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(287, 138);
+            this.btnClose.Location = new System.Drawing.Point(287, 166);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 0;
@@ -51,7 +52,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 40);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 100);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -60,7 +61,7 @@
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(12, 118);
+            this.label1.Location = new System.Drawing.Point(12, 146);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(328, 17);
             this.label1.TabIndex = 2;
@@ -68,7 +69,7 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(119, 36);
+            this.label2.Location = new System.Drawing.Point(119, 64);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(256, 43);
             this.label2.TabIndex = 3;
@@ -78,7 +79,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(119, 12);
+            this.label3.Location = new System.Drawing.Point(119, 40);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(218, 13);
             this.label3.TabIndex = 4;
@@ -88,17 +89,28 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(144, 79);
+            this.label4.Location = new System.Drawing.Point(144, 107);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(196, 13);
             this.label4.TabIndex = 5;
             this.label4.Text = "Search for \"dEVEOre\" on Github!";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(8, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(237, 24);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "dEVEOre - version 1.0.0";
+            // 
             // frmAbout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(370, 166);
+            this.ClientSize = new System.Drawing.Size(370, 199);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -124,5 +136,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }

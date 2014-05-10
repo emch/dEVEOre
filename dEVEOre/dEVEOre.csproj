@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataManager.cs" />
     <Compile Include="frmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,16 +68,12 @@
     <Compile Include="frmParams.Designer.cs">
       <DependentUpon>frmParams.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPrefs.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmPrefs.Designer.cs">
-      <DependentUpon>frmPrefs.cs</DependentUpon>
-    </Compile>
     <Compile Include="Mineral.cs" />
     <Compile Include="Ore.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingsManager.cs" />
+    <Compile Include="EveSystem.cs" />
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </EmbeddedResource>
@@ -85,9 +82,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmParams.resx">
       <DependentUpon>frmParams.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmPrefs.resx">
-      <DependentUpon>frmPrefs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

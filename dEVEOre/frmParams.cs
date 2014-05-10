@@ -13,28 +13,20 @@ namespace dEVEOre
     public partial class frmParams : Form
     {
         // Parameters
-        private int cycle;
-        private int yield;
-        private double netYield;
-        private double taxes;
         private frmMain parent;
 
         // Methods
-        public frmParams(int cycle, int yield, double netYield, double taxes, frmMain parent)
+        public frmParams(SettingsManager settings, frmMain parent)
         {
             InitializeComponent();
 
             this.parent = parent;
 
-            this.cycle = cycle;
-            this.yield = yield;
-            this.netYield = netYield;
-            this.taxes = taxes;
-
-            this.txtCycle.Text = cycle.ToString();
-            this.txtYield.Text = yield.ToString();
-            this.txtRefineOutput.Text = netYield.ToString(CultureInfo.InvariantCulture);
-            this.txtTaxes.Text = taxes.ToString(CultureInfo.InvariantCulture);
+            this.cmbTimerSetting.Text = settings.GetUpdateTimer().ToString();
+            this.txtCycle.Text = settings.GetCycle().ToString();
+            this.txtYield.Text = settings.GetYield().ToString();
+            this.txtRefineOutput.Text = settings.GetNetYield().ToString(CultureInfo.InvariantCulture);
+            this.txtTaxes.Text = settings.GetTaxes().ToString(CultureInfo.InvariantCulture);
         }
 
         private void frmParams_Load(object sender, EventArgs e)
@@ -46,13 +38,15 @@ namespace dEVEOre
         {
             try
             {
-                this.cycle = int.Parse(this.txtCycle.Text);
-                this.yield = int.Parse(this.txtYield.Text);
-                this.netYield = double.Parse(this.txtRefineOutput.Text, CultureInfo.InvariantCulture);
-                this.taxes = double.Parse(this.txtTaxes.Text, CultureInfo.InvariantCulture);
+                this.parent.GetSettingsManager().UpdateSettings(int.Parse(this.cmbTimerSetting.Text),
+                    int.Parse(this.txtCycle.Text),
+                    int.Parse(this.txtYield.Text),
+                    double.Parse(this.txtRefineOutput.Text, CultureInfo.InvariantCulture),
+                    double.Parse(this.txtTaxes.Text, CultureInfo.InvariantCulture));
+                this.parent.GetSettingsManager().SaveSettings(SettingsManager.CONFIG_FILE_PATH);
 
-                this.parent.SetParams(this.cycle, this.yield, this.netYield, this.taxes);
-                this.parent.SaveConfig(frmMain.CONFIG_FILE_PATH);
+                // resetting update Timer
+                this.parent.UpdateTimerInterval(int.Parse(this.cmbTimerSetting.Text));
             }
             catch (Exception ex)
             {

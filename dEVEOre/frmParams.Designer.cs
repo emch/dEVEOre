@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -38,21 +37,15 @@
             this.txtRefineOutput = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtTaxes = new System.Windows.Forms.TextBox();
+            this.cmbTimerSetting = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(197, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Edit to your character\'s skills/equipment:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 44);
+            this.label2.Location = new System.Drawing.Point(20, 40);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(96, 13);
             this.label2.TabIndex = 1;
@@ -61,7 +54,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(27, 70);
+            this.label3.Location = new System.Drawing.Point(20, 66);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(99, 13);
             this.label3.TabIndex = 2;
@@ -70,7 +63,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(27, 96);
+            this.label4.Location = new System.Drawing.Point(20, 92);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(111, 13);
             this.label4.TabIndex = 3;
@@ -78,7 +71,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(166, 146);
+            this.btnSave.Location = new System.Drawing.Point(126, 142);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 4;
@@ -88,32 +81,32 @@
             // 
             // txtCycle
             // 
-            this.txtCycle.Location = new System.Drawing.Point(141, 41);
+            this.txtCycle.Location = new System.Drawing.Point(134, 37);
             this.txtCycle.Name = "txtCycle";
-            this.txtCycle.Size = new System.Drawing.Size(100, 20);
+            this.txtCycle.Size = new System.Drawing.Size(67, 20);
             this.txtCycle.TabIndex = 5;
             this.txtCycle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtYield
             // 
-            this.txtYield.Location = new System.Drawing.Point(141, 67);
+            this.txtYield.Location = new System.Drawing.Point(134, 63);
             this.txtYield.Name = "txtYield";
-            this.txtYield.Size = new System.Drawing.Size(100, 20);
+            this.txtYield.Size = new System.Drawing.Size(67, 20);
             this.txtYield.TabIndex = 6;
             this.txtYield.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtRefineOutput
             // 
-            this.txtRefineOutput.Location = new System.Drawing.Point(141, 93);
+            this.txtRefineOutput.Location = new System.Drawing.Point(134, 89);
             this.txtRefineOutput.Name = "txtRefineOutput";
-            this.txtRefineOutput.Size = new System.Drawing.Size(100, 20);
+            this.txtRefineOutput.Size = new System.Drawing.Size(67, 20);
             this.txtRefineOutput.TabIndex = 7;
             this.txtRefineOutput.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(27, 123);
+            this.label5.Location = new System.Drawing.Point(20, 119);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(113, 13);
             this.label5.TabIndex = 8;
@@ -121,17 +114,54 @@
             // 
             // txtTaxes
             // 
-            this.txtTaxes.Location = new System.Drawing.Point(141, 120);
+            this.txtTaxes.Location = new System.Drawing.Point(134, 116);
             this.txtTaxes.Name = "txtTaxes";
-            this.txtTaxes.Size = new System.Drawing.Size(100, 20);
+            this.txtTaxes.Size = new System.Drawing.Size(67, 20);
             this.txtTaxes.TabIndex = 9;
             this.txtTaxes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // cmbTimerSetting
+            // 
+            this.cmbTimerSetting.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTimerSetting.FormattingEnabled = true;
+            this.cmbTimerSetting.Items.AddRange(new object[] {
+            "5",
+            "10",
+            "15",
+            "30",
+            "45",
+            "60"});
+            this.cmbTimerSetting.Location = new System.Drawing.Point(108, 12);
+            this.cmbTimerSetting.Name = "cmbTimerSetting";
+            this.cmbTimerSetting.Size = new System.Drawing.Size(44, 21);
+            this.cmbTimerSetting.TabIndex = 12;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(158, 15);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(43, 13);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "minutes";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(20, 15);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(74, 13);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Update every:";
             // 
             // frmParams
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(255, 182);
+            this.ClientSize = new System.Drawing.Size(212, 174);
+            this.Controls.Add(this.cmbTimerSetting);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.txtTaxes);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtRefineOutput);
@@ -141,7 +171,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmParams";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -154,7 +183,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -164,5 +192,8 @@
         private System.Windows.Forms.TextBox txtRefineOutput;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtTaxes;
+        private System.Windows.Forms.ComboBox cmbTimerSetting;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
     }
 }

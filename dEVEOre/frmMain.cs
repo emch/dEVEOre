@@ -15,21 +15,15 @@ namespace dEVEOre
     {
         // Parameters
         private SettingsManager settings;
-        private DataManager data;
+        private DataManager     data;
 
-        private frmParams   frmParams;
-        private frmAbout    frmAbout;
+        private frmParams       frmParams;
+        private frmAbout        frmAbout;
 
         // Methods
         public frmMain()
         {
             InitializeComponent();
-
-            // Initialize settings manager
-            this.settings = new SettingsManager();
-
-            // Initialize data manager
-            this.data = new DataManager();
         }
 
         public SettingsManager GetSettingsManager()
@@ -51,6 +45,22 @@ namespace dEVEOre
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            // Initialize settings manager
+            this.settings = new SettingsManager();
+
+            // Initialize data manager
+            try
+            {
+                this.data = new DataManager();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("A problem occurred while accessing data files: " + ex.Message, "Exception",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error);
+                this.Close();
+            }
+
             this.lblLastUpdate.Text = this.settings.GetLastUpdate().ToString();
             this.UpdateTimerInterval(this.settings.GetUpdateTimer());
         }

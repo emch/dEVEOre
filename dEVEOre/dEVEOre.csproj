@@ -72,6 +72,7 @@
     <Compile Include="Ore.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RefineTable.cs" />
     <Compile Include="SettingsManager.cs" />
     <Compile Include="EveSystem.cs" />
     <EmbeddedResource Include="frmAbout.resx">

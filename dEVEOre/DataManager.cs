@@ -2,18 +2,127 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
+using System.Globalization;
 
 namespace dEVEOre
 {
     public class DataManager
     {
         // Parameters
+        private Ore[] OreData;
+        private Mineral[] MineralData;
+        // private EveSystem[] SystemsData;
 
+        // Constants
+        private const String ORE_DATAFILE_PATH = "data/ore.dat";
+        private const String MINERAL_DATAFILE_PATH = "data/minerals.dat";
+        private const String REFINE_DATAFILE_PATH = "data/refine.dat";
 
         // Methods
+        public Ore[] GetOreData() { return this.OreData; }
+        public Mineral[] GetMineralData() { return this.MineralData; }
+
+        // public void UpdatePrices() {}
+
         public DataManager()
         {
+            try
+            {
+                this.LoadOreData(ORE_DATAFILE_PATH);
+                this.LoadMineralData(MINERAL_DATAFILE_PATH);
+                this.LoadRefineData(REFINE_DATAFILE_PATH);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
+        private void LoadOreData(String datapath)
+        {
+            try
+            {
+                this.OreData = new Ore[this.GetDataFileLineNumber(datapath)];
+
+                using (StreamReader sr = new StreamReader(datapath))
+                {
+                    String line; int k = 0;
+                    String[] split;
+                    String newOreName; int newOreId; int newOreBaseOreId; double newOrePercentIncreasedYield;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        // Splitting along " character
+                        split = line.Split(new Char[] { '"' });
+                        newOreName = split[1];
+                        split = split[0].Split(new Char[] { ' ' });
+                        newOreId = int.Parse(split[0]);
+                        newOrePercentIncreasedYield = double.Parse(split[1], CultureInfo.InvariantCulture);
+                        newOreBaseOreId = int.Parse(split[2]);
+
+                        this.OreData[k] = new Ore(newOreId,
+                            newOreName,
+                            newOreBaseOreId,
+                            newOrePercentIncreasedYield);
+
+                        k += 1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        private void LoadMineralData(String datapath)
+        {
+            try
+            {
+                this.MineralData = new Mineral[this.GetDataFileLineNumber(datapath)];
+
+                using (StreamReader sr = new StreamReader(datapath))
+                {
+                    String line; int k = 0;
+                    String[] split;
+                    String newMineralName; int newMineralId;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        // Splitting along " character
+                        split = line.Split(new Char[] { '"' });
+                        newMineralName = split[1];
+                        split = split[0].Split(new Char[] { ' ' });
+                        newMineralId = int.Parse(split[0]);
+
+                        this.MineralData[k] = new Mineral(newMineralId, newMineralName);
+
+                        k += 1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        private void LoadRefineData(String datapath)
+        {
+
+        }
+
+        private int GetDataFileLineNumber(String path)
+        {
+            int res = 0;
+            try
+            {
+                res = File.ReadLines(path).Count();
+            }
+            catch (Exception ex)
+            {
+                throw new System.Exception(ex.Message);
+            }
+            return res;
         }
     }
 }

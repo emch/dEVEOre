@@ -12,18 +12,43 @@ namespace dEVEOre
         // Parameters
         private Ore[] OreData;
         private Mineral[] MineralData;
-        // private EveSystem[] SystemsData;
+        private EveSystem[] EveSystemData;
 
         // Constants
         private const String ORE_DATAFILE_PATH = "data/ore.dat";
         private const String MINERAL_DATAFILE_PATH = "data/minerals.dat";
         private const String REFINE_DATAFILE_PATH = "data/refine.dat";
+        private const String EVESYSTEM_DATAFILE_PATH = "data/systems.dat";
 
         // Methods
         public Ore[] GetOreData() { return this.OreData; }
         public Mineral[] GetMineralData() { return this.MineralData; }
-
+        public EveSystem[] GetEveSystemData() { return this.EveSystemData; }
         // public void UpdatePrices() {}
+
+        public EveSystem GetEveSystemById(int id)
+        {
+            for (int k = 0; k < this.EveSystemData.Length; k++)
+            {
+                if (this.EveSystemData[k].GetId() == id)
+                {
+                    return this.EveSystemData[k];
+                }
+            }
+            return new EveSystem(-1, "error");
+        }
+
+        public EveSystem GetEveSystemByName(String name)
+        {
+            for (int k = 0; k < this.EveSystemData.Length; k++)
+            {
+                if (String.Compare(this.EveSystemData[k].GetName(), name, true, CultureInfo.InvariantCulture) == 0)
+                {
+                    return this.EveSystemData[k];
+                }
+            }
+            return new EveSystem(-1, "error");
+        }
 
         public DataManager()
         {
@@ -31,6 +56,7 @@ namespace dEVEOre
             {
                 this.LoadOreData(ORE_DATAFILE_PATH);
                 this.LoadMineralData(MINERAL_DATAFILE_PATH);
+                this.LoadEveSystemData(EVESYSTEM_DATAFILE_PATH);
                 this.LoadRefineData(REFINE_DATAFILE_PATH);
             }
             catch (Exception ex)
@@ -95,6 +121,37 @@ namespace dEVEOre
                         newMineralId = int.Parse(split[0]);
 
                         this.MineralData[k] = new Mineral(newMineralId, newMineralName);
+
+                        k += 1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        private void LoadEveSystemData(string datapath)
+        {
+            try
+            {
+                this.EveSystemData = new EveSystem[this.GetDataFileLineNumber(datapath)];
+
+                using (StreamReader sr = new StreamReader(datapath))
+                {
+                    String line; int k = 0;
+                    String[] split;
+                    String newEveSystemName; int newEveSystemId;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        // Splitting along " character
+                        split = line.Split(new Char[] { '"' });
+                        newEveSystemName = split[1];
+                        split = split[0].Split(new Char[] { ' ' });
+                        newEveSystemId = int.Parse(split[0]);
+
+                        this.EveSystemData[k] = new EveSystem(newEveSystemId, newEveSystemName);
 
                         k += 1;
                     }

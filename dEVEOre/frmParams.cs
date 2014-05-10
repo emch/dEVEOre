@@ -42,7 +42,8 @@ namespace dEVEOre
                     int.Parse(this.txtCycle.Text),
                     int.Parse(this.txtYield.Text),
                     double.Parse(this.txtRefineOutput.Text, CultureInfo.InvariantCulture),
-                    double.Parse(this.txtTaxes.Text, CultureInfo.InvariantCulture));
+                    double.Parse(this.txtTaxes.Text, CultureInfo.InvariantCulture),
+                    this.parent.GetSettingsManager().GetCurrentSystem());
                 this.parent.GetSettingsManager().SaveSettings(SettingsManager.CONFIG_FILE_PATH);
 
                 // resetting update Timer

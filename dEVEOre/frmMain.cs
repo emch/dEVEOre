@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using System.IO;
 using System.Globalization;
 
+// example request: http://api.eve-central.com/api/marketstat?typeid=34&typeid=35&usesystem=30000142
+
 namespace dEVEOre
 {
     public partial class frmMain : Form
@@ -19,6 +21,8 @@ namespace dEVEOre
 
         private frmParams       frmParams;
         private frmAbout        frmAbout;
+
+        private EveSystem       currentSystem;
 
         // Methods
         public frmMain()
@@ -63,11 +67,27 @@ namespace dEVEOre
 
             this.lblLastUpdate.Text = this.settings.GetLastUpdate().ToString();
             this.UpdateTimerInterval(this.settings.GetUpdateTimer());
+
+            // add EveSystem name to cmbEveSystem list
+            for (int k = 0; k < this.data.GetEveSystemData().Length; k++)
+            {
+                this.cmbEveSystem.Items.Add(this.data.GetEveSystemData()[k].GetName());
+            }
+
+            this.currentSystem = this.data.GetEveSystemById(this.settings.GetCurrentSystem());
+            this.cmbEveSystem.Text = this.currentSystem.GetName();
         }
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        public void UpdateTimerInterval(int minutes)
+        {
+            this.updateTimer.Enabled = false;
+            this.updateTimer.Interval = minutes * 1000 * 60;
+            this.updateTimer.Enabled = true;
         }
 
         private void updateTimer_Tick(object sender, EventArgs e)
@@ -82,11 +102,17 @@ namespace dEVEOre
             this.updateTimer.Enabled = true;
         }
 
-        public void UpdateTimerInterval(int minutes)
+        private void cmbEveSystem_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.updateTimer.Enabled = false;
-            this.updateTimer.Interval = minutes * 1000 * 60;
-            this.updateTimer.Enabled = true;
+            // update label:
+            this.lblCurrentSystem.Text = this.cmbEveSystem.SelectedItem.ToString();
+
+            // update SettingsManager with selected system:
+            this.currentSystem = this.data.GetEveSystemByName(this.cmbEveSystem.SelectedItem.ToString());
+            this.settings.UpdateCurrentSystem(this.currentSystem.GetId());
+
+            // update prices and results:
+            // TODO
         }
     }
 }

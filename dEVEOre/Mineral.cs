@@ -10,6 +10,8 @@ namespace dEVEOre
         // Parameters
         private int id;
         private String name;
+
+        private double maxBuyPrice;
         
         // Methods
         public Mineral(int id, String name)

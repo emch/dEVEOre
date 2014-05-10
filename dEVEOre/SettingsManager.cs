@@ -18,7 +18,7 @@ namespace dEVEOre
         private double netYield; // in percents
         private double taxes; // in percents
 
-        private EveSystem currentSystem;
+        private int currentSystem;
 
         // Constants
         public static String CONFIG_FILE_PATH = "config.cfg";
@@ -36,19 +36,29 @@ namespace dEVEOre
         public double GetNetYield() { return this.netYield; }
         public double GetTaxes() { return this.taxes; }
         public DateTime GetLastUpdate() { return this.lastUpdate; }
+        public int GetCurrentSystem() { return this.currentSystem; }
 
         public void SetUpdated()
         {
             this.lastUpdate = DateTime.Now;
         }
 
-        public void UpdateSettings(int seconds, int cycle, int yield, double netYield, double taxes)
+        public void UpdateSettings(int seconds, int cycle, int yield, double netYield, double taxes, int currentSystem)
         {
             this.updateTimer = seconds;
             this.cycle = cycle;
             this.yield = yield;
             this.netYield = netYield;
             this.taxes = taxes;
+            this.currentSystem = currentSystem;
+        }
+
+        public void UpdateCurrentSystem(int system)
+        {
+            this.currentSystem = system;
+
+            // Saving these values to config file
+            this.SaveSettings(CONFIG_FILE_PATH);
         }
 
         private void LoadSettings(String path)
@@ -65,6 +75,7 @@ namespace dEVEOre
                     this.yield = int.Parse(split[2]);
                     this.netYield = double.Parse(split[3], CultureInfo.InvariantCulture);
                     this.taxes = double.Parse(split[4], CultureInfo.InvariantCulture);
+                    this.currentSystem = int.Parse(split[5]);
                 }
             }
             catch //(Exception ex)
@@ -75,9 +86,10 @@ namespace dEVEOre
                 this.yield = 202;
                 this.netYield = 85.00;
                 this.taxes = 4.45;
+                this.currentSystem = 30002187;
 
                 // Saving these values to config file
-                String saveString = this.updateTimer.ToString() + " " + this.cycle.ToString() + " " + this.yield.ToString() + " " + this.netYield.ToString(CultureInfo.InvariantCulture) + " " + this.taxes.ToString(CultureInfo.InvariantCulture);
+                String saveString = this.updateTimer.ToString() + " " + this.cycle.ToString() + " " + this.yield.ToString() + " " + this.netYield.ToString(CultureInfo.InvariantCulture) + " " + this.taxes.ToString(CultureInfo.InvariantCulture) + " " + this.currentSystem.ToString();
                 TextWriter tw = new StreamWriter(CONFIG_FILE_PATH);
                 tw.WriteLine(saveString);
                 tw.Close();
@@ -86,7 +98,7 @@ namespace dEVEOre
 
         public void SaveSettings(String path)
         {
-            String saveString = this.updateTimer.ToString() + " " + this.cycle.ToString() + " " + this.yield.ToString() + " " + this.netYield.ToString(CultureInfo.InvariantCulture) + " " + this.taxes.ToString(CultureInfo.InvariantCulture);
+            String saveString = this.updateTimer.ToString() + " " + this.cycle.ToString() + " " + this.yield.ToString() + " " + this.netYield.ToString(CultureInfo.InvariantCulture) + " " + this.taxes.ToString(CultureInfo.InvariantCulture) + " " + this.currentSystem.ToString();
             TextWriter tw = new StreamWriter(CONFIG_FILE_PATH);
             tw.WriteLine(saveString);
             tw.Close();

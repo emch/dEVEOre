@@ -5,7 +5,20 @@ using System.Text;
 
 namespace dEVEOre
 {
-    class EveSystem
+    public class EveSystem
     {
+        // Parameters
+        private int id;
+        private String name;
+
+        // Methods
+        public EveSystem(int id, String name)
+        {
+            this.id = id;
+            this.name = name;
+        }
+
+        public int GetId() { return this.id; }
+        public String GetName() { return this.name; }
     }
 }

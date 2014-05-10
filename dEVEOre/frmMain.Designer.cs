@@ -34,7 +34,7 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblLastUpdate = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblCurrentSystem = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,6 +54,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
+            this.label4 = new System.Windows.Forms.Label();
+            this.cmbEveSystem = new System.Windows.Forms.ComboBox();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -69,10 +71,10 @@
             this.toolStripStatusLabel1,
             this.lblLastUpdate,
             this.toolStripStatusLabel2,
-            this.toolStripStatusLabel3});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 361);
+            this.lblCurrentSystem});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 464);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(656, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(853, 22);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
@@ -95,11 +97,11 @@
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(56, 17);
             this.toolStripStatusLabel2.Text = "- System:";
             // 
-            // toolStripStatusLabel3
+            // lblCurrentSystem
             // 
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(65, 17);
-            this.toolStripStatusLabel3.Text = "(unknown)";
+            this.lblCurrentSystem.Name = "lblCurrentSystem";
+            this.lblCurrentSystem.Size = new System.Drawing.Size(65, 17);
+            this.lblCurrentSystem.Text = "(unknown)";
             // 
             // menuStrip1
             // 
@@ -109,7 +111,7 @@
             this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(656, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(853, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -183,10 +185,10 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 27);
+            this.tabControl1.Location = new System.Drawing.Point(12, 51);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(632, 331);
+            this.tabControl1.Size = new System.Drawing.Size(829, 410);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
@@ -196,7 +198,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(624, 305);
+            this.tabPage1.Size = new System.Drawing.Size(821, 384);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Profit";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -266,11 +268,32 @@
             this.updateTimer.Interval = 2000;
             this.updateTimer.Tick += new System.EventHandler(this.updateTimer_Tick);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 28);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(44, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "System:";
+            // 
+            // cmbEveSystem
+            // 
+            this.cmbEveSystem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEveSystem.FormattingEnabled = true;
+            this.cmbEveSystem.Location = new System.Drawing.Point(63, 25);
+            this.cmbEveSystem.Name = "cmbEveSystem";
+            this.cmbEveSystem.Size = new System.Drawing.Size(136, 21);
+            this.cmbEveSystem.TabIndex = 4;
+            this.cmbEveSystem.SelectedIndexChanged += new System.EventHandler(this.cmbEveSystem_SelectedIndexChanged);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(656, 383);
+            this.ClientSize = new System.Drawing.Size(853, 486);
+            this.Controls.Add(this.cmbEveSystem);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -317,13 +340,15 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.ToolStripStatusLabel lblCurrentSystem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Timer updateTimer;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cmbEveSystem;
     }
 }
 

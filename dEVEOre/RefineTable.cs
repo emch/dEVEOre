@@ -5,6 +5,8 @@ using System.Text;
 
 namespace dEVEOre
 {
+    // create new class RefineCouple ?
+    // public int GetRefinedMineralFromOre(int oreid, int mineralid)
     public class RefineTable
     {
     }

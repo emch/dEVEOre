@@ -14,7 +14,7 @@ namespace dEVEOre
         private int baseOreId;
         private double percentIncreasedYield;
 
-        // max price in considered system?
+        private double maxBuyPrice;
 
         // Methods
         public Ore(int id, String name, int baseOreId, double percentIncreasedYield)

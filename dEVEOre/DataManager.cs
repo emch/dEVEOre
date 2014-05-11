@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Globalization;
+using System.Data;
+using System.Net;
+using System.Xml;
 
 namespace dEVEOre
 {
@@ -13,6 +16,7 @@ namespace dEVEOre
         private Ore[] OreData;
         private Mineral[] MineralData;
         private EveSystem[] EveSystemData;
+        private XmlDocument ApiXmlData;
 
         // Constants
         private const String ORE_DATAFILE_PATH = "data/ore.dat";
@@ -25,6 +29,25 @@ namespace dEVEOre
         public Mineral[] GetMineralData() { return this.MineralData; }
         public EveSystem[] GetEveSystemData() { return this.EveSystemData; }
         // public void UpdatePrices(int currentSystem) {}
+
+        public XmlDocument GetApiXmlData() { return this.ApiXmlData; }
+
+        public void UpdateXmlData(EveSystem currentSystem)
+        {
+            String requestString = this.GetXmlRequestString(currentSystem);
+
+            this.ApiXmlData.Load(requestString);
+
+            //// Create the web request  
+            //HttpWebRequest request = WebRequest.Create(requestString) as HttpWebRequest;
+
+            //// Get response  
+            //using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+            //{
+            //    // Load data into a dataset  
+            //    this.ApiXmlData.ReadXml(response.GetResponseStream());
+            //}
+        }
 
         public String GetXmlRequestString(EveSystem currentSystem)
         {
@@ -77,6 +100,7 @@ namespace dEVEOre
                 this.LoadMineralData(MINERAL_DATAFILE_PATH);
                 this.LoadEveSystemData(EVESYSTEM_DATAFILE_PATH);
                 this.LoadRefineData(REFINE_DATAFILE_PATH);
+                this.ApiXmlData = new XmlDocument();
             }
             catch (Exception ex)
             {

@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Globalization;
+using System.Xml;
 
 namespace dEVEOre
 {
@@ -74,6 +75,14 @@ namespace dEVEOre
 
             this.currentSystem = this.data.GetEveSystemById(this.settings.GetCurrentSystem());
             this.cmbEveSystem.Text = this.currentSystem.GetName();
+
+            // Update Xml
+            this.data.UpdateXmlData(this.currentSystem);
+
+            // Update prices and results TODO
+
+            // test
+            this.data.GetApiXmlData().Save("test.txt");
         }
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -92,7 +101,10 @@ namespace dEVEOre
         {
             this.updateTimer.Enabled = false;
 
-            // here, update prices using Xml request and dataManager!
+            // Update Xml
+            this.data.UpdateXmlData(this.currentSystem);
+
+            // Update prices and results TODO
 
             this.settings.SetUpdated();
             this.lblLastUpdate.Text = this.settings.GetLastUpdate().ToString();
@@ -109,8 +121,10 @@ namespace dEVEOre
             this.currentSystem = this.data.GetEveSystemByName(this.cmbEveSystem.SelectedItem.ToString());
             this.settings.UpdateCurrentSystem(this.currentSystem.GetId());
 
-            // update prices and results:
-            // TODO
+            // Update Xml
+            this.data.UpdateXmlData(this.currentSystem);
+
+            // Update prices and results TODO
         }
     }
 }

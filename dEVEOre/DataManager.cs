@@ -16,7 +16,9 @@ namespace dEVEOre
         private Ore[] OreData;
         private Mineral[] MineralData;
         private EveSystem[] EveSystemData;
+
         private XmlDocument ApiXmlData;
+        private XmlNamespaceManager ApiXmlDataNS;
 
         // Constants
         private const String ORE_DATAFILE_PATH = "data/ore.dat";
@@ -31,25 +33,46 @@ namespace dEVEOre
         // public void UpdatePrices(int currentSystem) {}
 
         public XmlDocument GetApiXmlData() { return this.ApiXmlData; }
+        public XmlNamespaceManager GetApiXmlDataNamespaceManager() { return this.ApiXmlDataNS; }
+
+        public void UpdatePrices(EveSystem currentSystem)
+        {
+            double price = 0;
+            for (int k = 0; k < this.OreData.Length; k++)
+            {
+                try
+                {
+                    price = double.Parse(this.ApiXmlData.SelectSingleNode("//type[@id=\"" + OreData[k].GetId() + "\"]", this.ApiXmlDataNS).SelectSingleNode("buy").SelectSingleNode("max").InnerText, CultureInfo.InvariantCulture);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                this.OreData[k].SetMaxBuyPrice(price);
+            }
+            for (int k = 0; k < this.MineralData.Length; k++)
+            {
+                try
+                {
+                    price = double.Parse(this.ApiXmlData.SelectSingleNode("//type[@id=\"" + MineralData[k].GetId() + "\"]", this.ApiXmlDataNS).SelectSingleNode("buy").SelectSingleNode("max").InnerText, CultureInfo.InvariantCulture);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                this.MineralData[k].SetMaxBuyPrice(price);
+            }
+        }
 
         public void UpdateXmlData(EveSystem currentSystem)
         {
             String requestString = this.GetXmlRequestString(currentSystem);
 
             this.ApiXmlData.Load(requestString);
-
-            //// Create the web request  
-            //HttpWebRequest request = WebRequest.Create(requestString) as HttpWebRequest;
-
-            //// Get response  
-            //using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-            //{
-            //    // Load data into a dataset  
-            //    this.ApiXmlData.ReadXml(response.GetResponseStream());
-            //}
+            this.ApiXmlDataNS = new XmlNamespaceManager(this.GetApiXmlData().NameTable);
         }
 
-        public String GetXmlRequestString(EveSystem currentSystem)
+        private String GetXmlRequestString(EveSystem currentSystem)
         {
             System.Text.StringBuilder res = new System.Text.StringBuilder();
 

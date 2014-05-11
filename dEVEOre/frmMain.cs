@@ -76,13 +76,8 @@ namespace dEVEOre
             this.currentSystem = this.data.GetEveSystemById(this.settings.GetCurrentSystem());
             this.cmbEveSystem.Text = this.currentSystem.GetName();
 
-            // Update Xml
-            this.data.UpdateXmlData(this.currentSystem);
-
-            // Update prices and results TODO
-
-            // test
-            this.data.GetApiXmlData().Save("test.txt");
+            // Update Xml/prices and results
+            this.UpdateData(this.currentSystem);
         }
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -101,10 +96,8 @@ namespace dEVEOre
         {
             this.updateTimer.Enabled = false;
 
-            // Update Xml
-            this.data.UpdateXmlData(this.currentSystem);
-
-            // Update prices and results TODO
+            // Update Xml/prices and results
+            this.UpdateData(this.currentSystem);
 
             this.settings.SetUpdated();
             this.lblLastUpdate.Text = this.settings.GetLastUpdate().ToString();
@@ -121,10 +114,50 @@ namespace dEVEOre
             this.currentSystem = this.data.GetEveSystemByName(this.cmbEveSystem.SelectedItem.ToString());
             this.settings.UpdateCurrentSystem(this.currentSystem.GetId());
 
-            // Update Xml
-            this.data.UpdateXmlData(this.currentSystem);
+            // Update Xml/prices and results
+            this.UpdateData(this.currentSystem);
 
-            // Update prices and results TODO
+            // Update label
+            this.lblLastUpdate.Text = DateTime.Now.ToString();
+
+            // Reset Timer?
+        }
+
+        private void updateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Update Xml/prices and results
+            this.UpdateData(this.currentSystem);
+
+            // Update label
+            this.lblLastUpdate.Text = DateTime.Now.ToString();
+
+            // Reset Timer?
+        }
+
+        private void UpdateData(EveSystem currentSystem)
+        {
+            // Update Xml
+            this.data.UpdateXmlData(currentSystem);
+
+            // Update prices
+            try
+            {
+                this.data.UpdatePrices(currentSystem);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception raised while updating prices: " + ex.Message, "Exception",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error);
+            }
+
+            // Update results TODO
+
+            // Debug
+            String saveString = this.data.GetOreData()[0].GetMaxBuyPrice().ToString(CultureInfo.InvariantCulture);
+            TextWriter tw = new StreamWriter("debug.txt");
+            tw.WriteLine(saveString);
+            tw.Close();
         }
     }
 }

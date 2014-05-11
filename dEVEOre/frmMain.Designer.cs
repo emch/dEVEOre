@@ -47,11 +47,11 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewProfit = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
+            this.dataGridViewMineralPrices = new System.Windows.Forms.DataGridView();
+            this.dataGridViewOrePrices = new System.Windows.Forms.DataGridView();
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this.cmbEveSystem = new System.Windows.Forms.ComboBox();
@@ -59,9 +59,10 @@
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProfit)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMineralPrices)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrePrices)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -71,9 +72,9 @@
             this.lblLastUpdate,
             this.toolStripStatusLabel2,
             this.lblCurrentSystem});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 464);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 430);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(853, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(634, 22);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
@@ -110,7 +111,7 @@
             this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(853, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(634, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -127,19 +128,19 @@
             // updateToolStripMenuItem
             // 
             this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
-            this.updateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.updateToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.updateToolStripMenuItem.Text = "Update prices";
             this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(143, 6);
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.quitToolStripMenuItem.Text = "Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
@@ -188,31 +189,31 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 51);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(829, 410);
+            this.tabControl1.Size = new System.Drawing.Size(610, 376);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Controls.Add(this.dataGridViewProfit);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(821, 384);
+            this.tabPage1.Size = new System.Drawing.Size(602, 350);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Profit";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dataGridViewProfit
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(80, 86);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(357, 156);
-            this.dataGridView1.TabIndex = 1;
+            this.dataGridViewProfit.AllowUserToAddRows = false;
+            this.dataGridViewProfit.AllowUserToDeleteRows = false;
+            this.dataGridViewProfit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewProfit.Location = new System.Drawing.Point(80, 86);
+            this.dataGridViewProfit.Name = "dataGridViewProfit";
+            this.dataGridViewProfit.ReadOnly = true;
+            this.dataGridViewProfit.Size = new System.Drawing.Size(357, 156);
+            this.dataGridViewProfit.TabIndex = 1;
             // 
             // label2
             // 
@@ -226,32 +227,47 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.dataGridView2);
-            this.tabPage2.Controls.Add(this.label1);
+            this.tabPage2.Controls.Add(this.dataGridViewMineralPrices);
+            this.tabPage2.Controls.Add(this.dataGridViewOrePrices);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(821, 384);
+            this.tabPage2.Size = new System.Drawing.Size(602, 350);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Max Buy prices";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // dataGridView2
+            // dataGridViewMineralPrices
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(55, 106);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(428, 152);
-            this.dataGridView2.TabIndex = 2;
+            this.dataGridViewMineralPrices.AllowUserToAddRows = false;
+            this.dataGridViewMineralPrices.AllowUserToDeleteRows = false;
+            this.dataGridViewMineralPrices.AllowUserToResizeColumns = false;
+            this.dataGridViewMineralPrices.AllowUserToResizeRows = false;
+            this.dataGridViewMineralPrices.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewMineralPrices.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridViewMineralPrices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewMineralPrices.Location = new System.Drawing.Point(309, 6);
+            this.dataGridViewMineralPrices.Name = "dataGridViewMineralPrices";
+            this.dataGridViewMineralPrices.ReadOnly = true;
+            this.dataGridViewMineralPrices.RowHeadersVisible = false;
+            this.dataGridViewMineralPrices.Size = new System.Drawing.Size(287, 338);
+            this.dataGridViewMineralPrices.TabIndex = 3;
             // 
-            // label1
+            // dataGridViewOrePrices
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(55, 44);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(364, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Show current sell prices for all ores and minerals for considered system here.";
+            this.dataGridViewOrePrices.AllowUserToAddRows = false;
+            this.dataGridViewOrePrices.AllowUserToDeleteRows = false;
+            this.dataGridViewOrePrices.AllowUserToResizeColumns = false;
+            this.dataGridViewOrePrices.AllowUserToResizeRows = false;
+            this.dataGridViewOrePrices.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewOrePrices.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridViewOrePrices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewOrePrices.Location = new System.Drawing.Point(6, 6);
+            this.dataGridViewOrePrices.Name = "dataGridViewOrePrices";
+            this.dataGridViewOrePrices.ReadOnly = true;
+            this.dataGridViewOrePrices.RowHeadersVisible = false;
+            this.dataGridViewOrePrices.Size = new System.Drawing.Size(287, 338);
+            this.dataGridViewOrePrices.TabIndex = 2;
             // 
             // updateTimer
             // 
@@ -281,7 +297,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(853, 486);
+            this.ClientSize = new System.Drawing.Size(634, 452);
             this.Controls.Add(this.cmbEveSystem);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tabControl1);
@@ -302,10 +318,10 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProfit)).EndInit();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMineralPrices)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrePrices)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -331,13 +347,13 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel lblCurrentSystem;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridViewProfit;
+        private System.Windows.Forms.DataGridView dataGridViewOrePrices;
         private System.Windows.Forms.Timer updateTimer;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cmbEveSystem;
+        private System.Windows.Forms.DataGridView dataGridViewMineralPrices;
     }
 }
 

@@ -23,6 +23,9 @@ namespace dEVEOre
 
         private EveSystem       currentSystem;
 
+        private DataTable       orePricesData;
+        private DataTable       mineralPricesData;
+
         // Methods
         public frmMain()
         {
@@ -48,6 +51,15 @@ namespace dEVEOre
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            // Initialize Datatables
+            this.orePricesData = new DataTable();
+            this.orePricesData.Columns.Add("Ore");
+            this.orePricesData.Columns.Add("Max buy");
+
+            this.mineralPricesData = new DataTable();
+            this.mineralPricesData.Columns.Add("Mineral");
+            this.mineralPricesData.Columns.Add("Max buy");
+
             // Initialize settings manager
             this.settings = new SettingsManager();
 
@@ -153,11 +165,35 @@ namespace dEVEOre
 
             // Update results TODO
 
-            // Debug
-            String saveString = this.data.GetOreData()[0].GetMaxBuyPrice().ToString(CultureInfo.InvariantCulture);
-            TextWriter tw = new StreamWriter("debug.txt");
-            tw.WriteLine(saveString);
-            tw.Close();
+            // Update forms
+            this.UpdateDataGridViewPrices();
+        }
+
+        private void UpdateDataGridViewPrices()
+        {
+            this.orePricesData.Clear();
+            this.mineralPricesData.Clear();
+
+            for (int k = 0; k < this.data.GetOreData().Length; k++)
+            {
+                this.orePricesData.Rows.Add(this.data.GetOreData()[k].GetName(), this.data.GetOreData()[k].GetMaxBuyPrice().ToString("F2", CultureInfo.InvariantCulture));
+            }
+
+            for (int k = 0; k < this.data.GetMineralData().Length; k++)
+            {
+                this.mineralPricesData.Rows.Add(this.data.GetMineralData()[k].GetName(), this.data.GetMineralData()[k].GetMaxBuyPrice().ToString("F2", CultureInfo.InvariantCulture));
+            }
+
+            this.dataGridViewOrePrices.DataSource = this.orePricesData;
+            this.dataGridViewMineralPrices.DataSource = this.mineralPricesData;
+
+            // Aligning on right!
+            this.dataGridViewOrePrices.Columns["Max buy"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            this.dataGridViewMineralPrices.Columns["Max buy"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            // Disable sorting
+            this.dataGridViewOrePrices.Columns["Max buy"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewMineralPrices.Columns["Max buy"].SortMode = DataGridViewColumnSortMode.NotSortable;
         }
     }
 }

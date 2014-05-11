@@ -51,7 +51,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
             this.label4 = new System.Windows.Forms.Label();
@@ -227,14 +226,13 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.dataGridView2);
-            this.tabPage2.Controls.Add(this.label3);
             this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(624, 305);
+            this.tabPage2.Size = new System.Drawing.Size(821, 384);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Sell prices";
+            this.tabPage2.Text = "Max Buy prices";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // dataGridView2
@@ -244,15 +242,6 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(428, 152);
             this.dataGridView2.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(55, 69);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(201, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "System is modified in parameters window.";
             // 
             // label1
             // 
@@ -343,7 +332,6 @@
         private System.Windows.Forms.ToolStripStatusLabel lblCurrentSystem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Timer updateTimer;

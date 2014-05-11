@@ -9,8 +9,6 @@ using System.Windows.Forms;
 using System.IO;
 using System.Globalization;
 
-// example request: http://api.eve-central.com/api/marketstat?typeid=34&typeid=35&usesystem=30000142
-
 namespace dEVEOre
 {
     public partial class frmMain : Form

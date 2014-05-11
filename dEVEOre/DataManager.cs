@@ -24,7 +24,26 @@ namespace dEVEOre
         public Ore[] GetOreData() { return this.OreData; }
         public Mineral[] GetMineralData() { return this.MineralData; }
         public EveSystem[] GetEveSystemData() { return this.EveSystemData; }
-        // public void UpdatePrices() {}
+        // public void UpdatePrices(int currentSystem) {}
+
+        public String GetXmlRequestString(EveSystem currentSystem)
+        {
+            System.Text.StringBuilder res = new System.Text.StringBuilder();
+
+            res.Append("http://api.eve-central.com/api/marketstat?");
+
+            for (int k = 0; k < this.OreData.Length; k++)
+            {
+                res.Append("&typeid=").Append(this.OreData[k].GetId());
+            }
+            for (int k = 0; k < this.MineralData.Length; k++)
+            {
+                res.Append("&typeid=").Append(this.MineralData[k].GetId());
+            }
+            res.Append("&usesystem=").Append(currentSystem.GetId().ToString());
+
+            return res.ToString();
+        }
 
         public EveSystem GetEveSystemById(int id)
         {
@@ -75,7 +94,7 @@ namespace dEVEOre
                 {
                     String line; int k = 0;
                     String[] split;
-                    String newOreName; int newOreId; int newOreBaseOreId; double newOrePercentIncreasedYield;
+                    String newOreName; int newOreId; int newOreBaseOreId; double newOrePercentIncreasedYield; double newOreVolumePerUnit;
                     while ((line = sr.ReadLine()) != null)
                     {
                         // Splitting along " character
@@ -85,11 +104,13 @@ namespace dEVEOre
                         newOreId = int.Parse(split[0]);
                         newOrePercentIncreasedYield = double.Parse(split[1], CultureInfo.InvariantCulture);
                         newOreBaseOreId = int.Parse(split[2]);
+                        newOreVolumePerUnit = double.Parse(split[3], CultureInfo.InvariantCulture);
 
                         this.OreData[k] = new Ore(newOreId,
                             newOreName,
                             newOreBaseOreId,
-                            newOrePercentIncreasedYield);
+                            newOrePercentIncreasedYield,
+                            newOreVolumePerUnit);
 
                         k += 1;
                     }

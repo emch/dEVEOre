@@ -18,9 +18,16 @@ namespace dEVEOre
         {
             this.id = id;
             this.name = name;
+            this.maxBuyPrice = 0;
+        }
+
+        public void SetMaxBuyPrice(double price)
+        {
+            this.maxBuyPrice = price;
         }
 
         public int GetId() { return this.id; }
         public String GetName() { return this.name; }
+        public double GetMaxBuyPrice() { return this.maxBuyPrice; }
     }
 }

@@ -164,9 +164,22 @@ namespace dEVEOre
             }
 
             // Update results TODO
+            this.data.UpdateProfitData();
 
             // Update forms
             this.UpdateDataGridViewPrices();
+            this.UpdataDataGridViewProfit();
+        }
+
+        private void UpdataDataGridViewProfit()
+        {
+            this.dataGridViewProfit.DataSource = this.data.GetProfitDataTable();
+
+            for (int k = 0; k < this.dataGridViewProfit.Columns.Count; k++)
+            {
+                this.dataGridViewProfit.Columns[k].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                this.dataGridViewProfit.Columns[k].SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
         }
 
         private void UpdateDataGridViewPrices()

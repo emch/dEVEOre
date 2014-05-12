@@ -16,6 +16,8 @@ namespace dEVEOre
         private Ore[] OreData;
         private Mineral[] MineralData;
         private EveSystem[] EveSystemData;
+        private RefineTable RefineData;
+        private DataTable profitData;
 
         private XmlDocument ApiXmlData;
         private XmlNamespaceManager ApiXmlDataNS;
@@ -30,10 +32,52 @@ namespace dEVEOre
         public Ore[] GetOreData() { return this.OreData; }
         public Mineral[] GetMineralData() { return this.MineralData; }
         public EveSystem[] GetEveSystemData() { return this.EveSystemData; }
-        // public void UpdatePrices(int currentSystem) {}
 
         public XmlDocument GetApiXmlData() { return this.ApiXmlData; }
         public XmlNamespaceManager GetApiXmlDataNamespaceManager() { return this.ApiXmlDataNS; }
+        public DataTable GetProfitDataTable() { return this.profitData; }
+
+        /**
+         * 
+         * */
+        public void UpdateProfitData()
+        {
+            this.profitData.Clear();
+
+            // MAGIC HAPPENS HERE!
+        }
+
+        /**
+         * Constructor
+         * */
+        public DataManager()
+        {
+            try
+            {
+                this.LoadOreData(ORE_DATAFILE_PATH);
+                this.LoadMineralData(MINERAL_DATAFILE_PATH);
+                this.LoadEveSystemData(EVESYSTEM_DATAFILE_PATH);
+                this.LoadRefineData(REFINE_DATAFILE_PATH);
+                this.ApiXmlData = new XmlDocument();
+                this.RefineData = new RefineTable(this.OreData.Length, this.MineralData.Length, REFINE_DATAFILE_PATH);
+
+                // Setting up profit DataTable
+                this.profitData = new DataTable();
+                this.profitData.Columns.Add("Ore");
+                this.profitData.Columns.Add("Ref/u");
+                this.profitData.Columns.Add("NotRef/u");
+                this.profitData.Columns.Add("Ref/m3");
+                this.profitData.Columns.Add("NotRef/m3");
+                this.profitData.Columns.Add("Ref/cy");
+                this.profitData.Columns.Add("NotRef/cy");
+                this.profitData.Columns.Add("Ref/h");
+                this.profitData.Columns.Add("NotRef/h");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
         public void UpdatePrices(EveSystem currentSystem)
         {
@@ -113,22 +157,6 @@ namespace dEVEOre
                 }
             }
             return new EveSystem(-1, "error");
-        }
-
-        public DataManager()
-        {
-            try
-            {
-                this.LoadOreData(ORE_DATAFILE_PATH);
-                this.LoadMineralData(MINERAL_DATAFILE_PATH);
-                this.LoadEveSystemData(EVESYSTEM_DATAFILE_PATH);
-                this.LoadRefineData(REFINE_DATAFILE_PATH);
-                this.ApiXmlData = new XmlDocument();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
         }
 
         private void LoadOreData(String datapath)

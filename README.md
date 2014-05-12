@@ -5,4 +5,4 @@ dEVEOre is an EVE-Online Ore Mining Tool. A common question amongst miners in th
 
 dEVEOre helps you answer this question by fetching Ore/Mineral buy orders - in the system where you want to sell - from EVE API. It gives you info like income per hour for a specific ore when selling it raw or refined.
 
-See the wiki for more information.
+Check the wiki for more information.

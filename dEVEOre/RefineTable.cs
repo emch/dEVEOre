@@ -25,9 +25,32 @@ namespace dEVEOre
             return this.refineTable[this.GetOreRowNb(ore), 1];
         }
 
+        public int GetBatch(int oreId)
+        {
+            return this.refineTable[this.GetOreRowNb(oreId), 1];
+        }
+
         public int GetRefineQty(Ore ore, Mineral mineral)
         {
             return this.refineTable[this.GetOreRowNb(ore), this.GetMineralColumnNb(mineral)];
+        }
+
+        public int GetRefineQty(int oreId, Mineral mineral)
+        {
+            return this.refineTable[this.GetOreRowNb(oreId), this.GetMineralColumnNb(mineral)];
+        }
+
+        private int GetOreRowNb(int oreId)
+        {
+
+            for (int k = 0; k < this.refineTable.GetLength(0); k++) // number of rows
+            {
+                if (this.refineTable[k, 0] == oreId)
+                {
+                    return k;
+                }
+            }
+            return -666;
         }
 
         private int GetOreRowNb(Ore ore)
@@ -48,28 +71,28 @@ namespace dEVEOre
         {
             switch (mineral.GetId())
             {
-                case (int)MineralTypesIds.Tritanium: // working?
+                case (int)MineralTypesIds.Tritanium:
                     return 2;
                     break;
-                case 35: // Pyerite
+                case (int)MineralTypesIds.Pyerite: // Pyerite
                     return 3;
                     break;
-                case 36: // Mexallon
+                case (int)MineralTypesIds.Mexallon: // Mexallon
                     return 4;
                     break;
-                case 37: // Isogen
+                case (int)MineralTypesIds.Isogen: // Isogen
                     return 5;
                     break;
-                case 38: // Nocxium
+                case (int)MineralTypesIds.Noxcium: // Nocxium
                     return 6;
                     break;
-                case 40: // Megacyte
+                case (int)MineralTypesIds.Megacyte: // Megacyte
                     return 7;
                     break;
-                case 39: // Zydrine
+                case (int)MineralTypesIds.Zydrine: // Zydrine
                     return 8;
                     break;
-                case 11399: // Morphite
+                case (int)MineralTypesIds.Morphite: // Morphite
                     return 9;
                     break;
                 default:

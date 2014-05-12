@@ -71,9 +71,9 @@
             this.lblLastUpdate,
             this.toolStripStatusLabel2,
             this.lblCurrentSystem});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 430);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 550);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(634, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(894, 22);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
@@ -110,7 +110,7 @@
             this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(634, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(894, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -188,7 +188,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 51);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(610, 376);
+            this.tabControl1.Size = new System.Drawing.Size(870, 496);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
@@ -197,9 +197,9 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(602, 350);
+            this.tabPage1.Size = new System.Drawing.Size(862, 470);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Profit";
+            this.tabPage1.Text = "Profit (ISK)";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // dataGridViewProfit
@@ -215,7 +215,7 @@
             this.dataGridViewProfit.Name = "dataGridViewProfit";
             this.dataGridViewProfit.ReadOnly = true;
             this.dataGridViewProfit.RowHeadersVisible = false;
-            this.dataGridViewProfit.Size = new System.Drawing.Size(596, 344);
+            this.dataGridViewProfit.Size = new System.Drawing.Size(856, 461);
             this.dataGridViewProfit.TabIndex = 1;
             // 
             // tabPage2
@@ -225,9 +225,9 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(602, 350);
+            this.tabPage2.Size = new System.Drawing.Size(862, 470);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Max buy prices";
+            this.tabPage2.Text = "Max buy prices (ISK)";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // dataGridViewMineralPrices
@@ -239,11 +239,11 @@
             this.dataGridViewMineralPrices.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewMineralPrices.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewMineralPrices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewMineralPrices.Location = new System.Drawing.Point(309, 6);
+            this.dataGridViewMineralPrices.Location = new System.Drawing.Point(436, 6);
             this.dataGridViewMineralPrices.Name = "dataGridViewMineralPrices";
             this.dataGridViewMineralPrices.ReadOnly = true;
             this.dataGridViewMineralPrices.RowHeadersVisible = false;
-            this.dataGridViewMineralPrices.Size = new System.Drawing.Size(287, 338);
+            this.dataGridViewMineralPrices.Size = new System.Drawing.Size(420, 458);
             this.dataGridViewMineralPrices.TabIndex = 3;
             // 
             // dataGridViewOrePrices
@@ -259,7 +259,7 @@
             this.dataGridViewOrePrices.Name = "dataGridViewOrePrices";
             this.dataGridViewOrePrices.ReadOnly = true;
             this.dataGridViewOrePrices.RowHeadersVisible = false;
-            this.dataGridViewOrePrices.Size = new System.Drawing.Size(287, 338);
+            this.dataGridViewOrePrices.Size = new System.Drawing.Size(420, 458);
             this.dataGridViewOrePrices.TabIndex = 2;
             // 
             // updateTimer
@@ -290,7 +290,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(634, 452);
+            this.ClientSize = new System.Drawing.Size(894, 572);
             this.Controls.Add(this.cmbEveSystem);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tabControl1);

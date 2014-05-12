@@ -126,16 +126,14 @@
             this.cmbTimerSetting.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTimerSetting.FormattingEnabled = true;
             this.cmbTimerSetting.Items.AddRange(new object[] {
-            "5",
             "10",
-            "15",
             "30",
-            "45",
             "60"});
             this.cmbTimerSetting.Location = new System.Drawing.Point(100, 12);
             this.cmbTimerSetting.Name = "cmbTimerSetting";
             this.cmbTimerSetting.Size = new System.Drawing.Size(44, 21);
             this.cmbTimerSetting.TabIndex = 12;
+            this.cmbTimerSetting.SelectedIndexChanged += new System.EventHandler(this.cmbTimerSetting_SelectedIndexChanged);
             // 
             // label6
             // 

@@ -40,11 +40,69 @@ namespace dEVEOre
         /**
          * 
          * */
-        public void UpdateProfitData()
+        public void UpdateProfitData(SettingsManager settings)
         {
             this.profitData.Clear();
 
-            // MAGIC HAPPENS HERE!
+            double refinedBasePerUnit, refinedPerUnit;
+            double notRefinedPerUnit;
+            double refinedPerMCube;
+            double notRefinedPerMCube;
+            double refinedPerCycle;
+            double notRefinedPerCycle;
+            double refinedPerHour;
+            double notRefinedPerHour;
+
+            // For each Mineral
+            for (int k = 0; k < this.OreData.Length; k++)
+            {
+                // Reset
+                refinedBasePerUnit = 0; refinedPerUnit = 0; 
+                notRefinedPerUnit = 0;
+                refinedPerMCube = 0;
+                notRefinedPerMCube = 0;
+                refinedPerCycle = 0;
+                notRefinedPerCycle = 0;
+                refinedPerHour = 0;
+                notRefinedPerHour = 0;
+
+                // Profit per refined unit of considered ore
+                for (int j = 0; j < this.MineralData.Length; j++)
+                {
+                    refinedBasePerUnit += this.MineralData[j].GetMaxBuyPrice() *
+                        this.RefineData.GetRefineQty(this.OreData[k].GetBaseOreId(), this.MineralData[j]) *
+                        settings.GetNetYield()/100;
+                }
+                refinedBasePerUnit /= this.RefineData.GetBatch(this.OreData[k].GetBaseOreId());
+                refinedPerUnit = refinedBasePerUnit + refinedBasePerUnit * this.OreData[k].GetPercentIncreasedYield()/100;
+                refinedPerUnit -= refinedPerUnit * settings.GetTaxes() / 100;
+
+                // Profit per not refined unit of considered ore
+                notRefinedPerUnit = this.OreData[k].GetMaxBuyPrice();
+
+                // Per m3
+                refinedPerMCube = refinedPerUnit / this.OreData[k].GetVolumePerUnit();
+                notRefinedPerMCube = notRefinedPerUnit / this.OreData[k].GetVolumePerUnit();
+
+                // Per cycle
+                refinedPerCycle = refinedPerMCube * settings.GetYield();
+                notRefinedPerCycle = notRefinedPerMCube * settings.GetYield();
+
+                // Per hour (warning, GetCycle returns a result in seconds)
+                refinedPerHour = 3600 * refinedPerCycle / settings.GetCycle();
+                notRefinedPerHour = 3600 * notRefinedPerCycle / settings.GetCycle();
+
+                // Add row
+                this.profitData.Rows.Add(this.OreData[k].GetName(),
+                    refinedPerUnit.ToString("#,##0.00", CultureInfo.InvariantCulture),
+                    notRefinedPerUnit.ToString("#,##0.00", CultureInfo.InvariantCulture),
+                    refinedPerMCube.ToString("#,##0.00", CultureInfo.InvariantCulture),
+                    notRefinedPerMCube.ToString("#,##0.00", CultureInfo.InvariantCulture),
+                    refinedPerCycle.ToString("#,##0.00", CultureInfo.InvariantCulture),
+                    notRefinedPerCycle.ToString("#,##0.00", CultureInfo.InvariantCulture),
+                    refinedPerHour.ToString("#,##0.00", CultureInfo.InvariantCulture),
+                    notRefinedPerHour.ToString("#,##0.00", CultureInfo.InvariantCulture));
+            }
         }
 
         /**

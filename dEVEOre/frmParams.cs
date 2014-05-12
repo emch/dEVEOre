@@ -55,7 +55,13 @@ namespace dEVEOre
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error);
             }
+            this.parent.UpdateData(this.parent.GetDataManager().GetEveSystemById(this.parent.GetSettingsManager().GetCurrentSystem()));
             this.Close();
+        }
+
+        private void cmbTimerSetting_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

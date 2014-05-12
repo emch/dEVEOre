@@ -32,6 +32,11 @@ namespace dEVEOre
             InitializeComponent();
         }
 
+        public DataManager GetDataManager()
+        {
+            return this.data;
+        }
+
         public SettingsManager GetSettingsManager()
         {
             return this.settings;
@@ -146,7 +151,7 @@ namespace dEVEOre
             // Reset Timer?
         }
 
-        private void UpdateData(EveSystem currentSystem)
+        public void UpdateData(EveSystem currentSystem)
         {
             // Update Xml
             this.data.UpdateXmlData(currentSystem);
@@ -164,7 +169,7 @@ namespace dEVEOre
             }
 
             // Update results TODO
-            this.data.UpdateProfitData();
+            this.data.UpdateProfitData(this.settings);
 
             // Update forms
             this.UpdateDataGridViewPrices();
@@ -175,7 +180,7 @@ namespace dEVEOre
         {
             this.dataGridViewProfit.DataSource = this.data.GetProfitDataTable();
 
-            for (int k = 0; k < this.dataGridViewProfit.Columns.Count; k++)
+            for (int k = 1; k < this.dataGridViewProfit.Columns.Count; k++)
             {
                 this.dataGridViewProfit.Columns[k].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 this.dataGridViewProfit.Columns[k].SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -189,12 +194,12 @@ namespace dEVEOre
 
             for (int k = 0; k < this.data.GetOreData().Length; k++)
             {
-                this.orePricesData.Rows.Add(this.data.GetOreData()[k].GetName(), this.data.GetOreData()[k].GetMaxBuyPrice().ToString("F2", CultureInfo.InvariantCulture));
+                this.orePricesData.Rows.Add(this.data.GetOreData()[k].GetName(), this.data.GetOreData()[k].GetMaxBuyPrice().ToString("#,##0.00", CultureInfo.InvariantCulture));
             }
 
             for (int k = 0; k < this.data.GetMineralData().Length; k++)
             {
-                this.mineralPricesData.Rows.Add(this.data.GetMineralData()[k].GetName(), this.data.GetMineralData()[k].GetMaxBuyPrice().ToString("F2", CultureInfo.InvariantCulture));
+                this.mineralPricesData.Rows.Add(this.data.GetMineralData()[k].GetName(), this.data.GetMineralData()[k].GetMaxBuyPrice().ToString("#,##0.00", CultureInfo.InvariantCulture));
             }
 
             this.dataGridViewOrePrices.DataSource = this.orePricesData;

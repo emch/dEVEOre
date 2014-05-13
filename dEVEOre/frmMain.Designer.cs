@@ -54,6 +54,7 @@
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this.cmbEveSystem = new System.Windows.Forms.ComboBox();
+            this.manageSystemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -146,7 +147,8 @@
             // configToolStripMenuItem
             // 
             this.configToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.preferencesToolStripMenuItem});
+            this.preferencesToolStripMenuItem,
+            this.manageSystemsToolStripMenuItem});
             this.configToolStripMenuItem.Name = "configToolStripMenuItem";
             this.configToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.configToolStripMenuItem.Text = "Edit";
@@ -154,7 +156,7 @@
             // preferencesToolStripMenuItem
             // 
             this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.preferencesToolStripMenuItem.Text = "Settings";
             this.preferencesToolStripMenuItem.Click += new System.EventHandler(this.preferencesToolStripMenuItem_Click);
             // 
@@ -286,6 +288,13 @@
             this.cmbEveSystem.TabIndex = 4;
             this.cmbEveSystem.SelectedIndexChanged += new System.EventHandler(this.cmbEveSystem_SelectedIndexChanged);
             // 
+            // manageSystemsToolStripMenuItem
+            // 
+            this.manageSystemsToolStripMenuItem.Enabled = false;
+            this.manageSystemsToolStripMenuItem.Name = "manageSystemsToolStripMenuItem";
+            this.manageSystemsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.manageSystemsToolStripMenuItem.Text = "Systems";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -345,6 +354,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cmbEveSystem;
         private System.Windows.Forms.DataGridView dataGridViewMineralPrices;
+        private System.Windows.Forms.ToolStripMenuItem manageSystemsToolStripMenuItem;
     }
 }
 

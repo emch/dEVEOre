@@ -98,7 +98,7 @@ namespace dEVEOre
 
         public void SaveSettings(String path)
         {
-            String saveString = this.updateTimer.ToString() + " " + this.cycle.ToString() + " " + this.yield.ToString() + " " + this.netYield.ToString(CultureInfo.InvariantCulture) + " " + this.taxes.ToString(CultureInfo.InvariantCulture) + " " + this.currentSystem.ToString();
+            String saveString = this.updateTimer.ToString() + " " + this.cycle.ToString() + " " + this.yield.ToString(CultureInfo.InvariantCulture) + " " + this.netYield.ToString(CultureInfo.InvariantCulture) + " " + this.taxes.ToString(CultureInfo.InvariantCulture) + " " + this.currentSystem.ToString();
             TextWriter tw = new StreamWriter(CONFIG_FILE_PATH);
             tw.WriteLine(saveString);
             tw.Close();

@@ -183,7 +183,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmParams";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "dEVEOre - Parameters";
+            this.Text = "frmParams";
             this.Load += new System.EventHandler(this.frmParams_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

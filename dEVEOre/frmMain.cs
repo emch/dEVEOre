@@ -56,6 +56,11 @@ namespace dEVEOre
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            // Setup form text
+            this.Text = Program.PROGRAM_NAME + " v" + Program.PROGRAM_VERSION.ToString() + "." +
+                Program.PROGRAM_VERSION_NEWFEATURE.ToString() + "." +
+                Program.PROGRAM_VERSION_BUG.ToString();
+
             // Initialize Datatables
             this.orePricesData = new DataTable();
             this.orePricesData.Columns.Add("Ore");
@@ -153,13 +158,16 @@ namespace dEVEOre
 
         public void UpdateData(EveSystem currentSystem)
         {
-            // Update Xml
-            this.data.UpdateXmlData(currentSystem);
-
-            // Update prices
             try
             {
-                this.data.UpdatePrices(currentSystem);
+                // Update Xml
+                this.data.UpdateXmlData(currentSystem);
+
+                // Update prices
+                this.data.UpdatePrices();
+
+                // Update results TODO
+                this.data.UpdateProfitData(this.settings);
             }
             catch (Exception ex)
             {
@@ -167,9 +175,6 @@ namespace dEVEOre
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error);
             }
-
-            // Update results TODO
-            this.data.UpdateProfitData(this.settings);
 
             // Update forms
             this.UpdateDataGridViewPrices();

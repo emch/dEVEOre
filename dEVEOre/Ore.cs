@@ -5,20 +5,29 @@ using System.Text;
 
 namespace dEVEOre
 {
+    /**
+     * Ore
+     * 
+     * In EVE, Mineral is mined in Asteroid belts. Minerals are obtained by refining Ore.
+     * This class stores basic info about a type of Ore as well as its max buy price (updated by DataManager instance).
+     * */
     public class Ore
     {
         // Parameters
-        private int     id;
-        private String  name;
+        private int     id;                     // id (use should become clear)
+        private String  name;                   // name
 
-        private int baseOreId;
-        private double percentIncreasedYield;
+        private int baseOreId;                  // for a given Ore, more concentrated types exist. This is used to store the "base" Ore from which refine yields are deduced.s
+        private double percentIncreasedYield;   // percentage of increase in Ore yield for more concentrated types (0% for base Ore)
 
-        private double volumePerUnit;
+        private double volumePerUnit;           // volume (in m3) of a given unit of Ore. Mining lasers attributes are given in m3 of Ore mined per cycle.
 
-        private double maxBuyPrice;
+        private double maxBuyPrice;             // max buy order on the market
 
         // Methods
+        /**
+         * Constructor
+         * */
         public Ore(int id, String name, int baseOreId, double percentIncreasedYield, double volumePerUnit)
         {
             this.id = id;
@@ -29,11 +38,13 @@ namespace dEVEOre
             this.volumePerUnit = volumePerUnit;
         }
 
+        // (Setter, see Mineral.cs)
         public void SetMaxBuyPrice(double price)
         {
             this.maxBuyPrice = price;
         }
 
+        // (Getters)
         public String GetName() { return this.name; }
         public int GetId() { return this.id; }
         public int GetBaseOreId() { return this.baseOreId; }

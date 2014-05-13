@@ -31,7 +31,7 @@ namespace dEVEOre
 
         private void frmParams_Load(object sender, EventArgs e)
         {
-
+            this.Text = Program.PROGRAM_NAME + " - Parameters";
         }
 
         private void btnSave_Click(object sender, EventArgs e)

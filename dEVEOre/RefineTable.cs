@@ -6,8 +6,6 @@ using System.IO;
 
 namespace dEVEOre
 {
-    // create new class RefineCouple ?
-    // public int GetRefinedMineralFromOre(int oreid, int mineralid)
     public class RefineTable
     {
         // Parameters

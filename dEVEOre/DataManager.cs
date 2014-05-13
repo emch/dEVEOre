@@ -10,35 +10,46 @@ using System.Xml;
 
 namespace dEVEOre
 {
+    /**
+     * DataManager
+     * 
+     * DataManager class is used to load (from .dat files) and store data and to retrieve API info about prices (Xml format).
+     * */
     public class DataManager
     {
         // Parameters
-        private Ore[] OreData;
-        private Mineral[] MineralData;
-        private EveSystem[] EveSystemData;
-        private RefineTable RefineData;
-        private DataTable profitData;
+        private Ore[] OreData;                      // Ore data
+        private Mineral[] MineralData;              // Mineral data
+        private EveSystem[] EveSystemData;          // Systems data
+        private RefineTable RefineData;             // Refine data
+        private DataTable profitData;               // Profit data (calculations)
 
-        private XmlDocument ApiXmlData;
-        private XmlNamespaceManager ApiXmlDataNS;
+        private XmlDocument ApiXmlData;             // This is used to stroe EVE API server answer to user/program request
+        private XmlNamespaceManager ApiXmlDataNS;   // Namespace manager
 
-        // Constants
+        // Constants (path to .dat files)
         private const String ORE_DATAFILE_PATH = "data/ore.dat";
         private const String MINERAL_DATAFILE_PATH = "data/minerals.dat";
         private const String REFINE_DATAFILE_PATH = "data/refine.dat";
         private const String EVESYSTEM_DATAFILE_PATH = "data/systems.dat";
 
         // Methods
+
+        // (Getters)
         public Ore[] GetOreData() { return this.OreData; }
         public Mineral[] GetMineralData() { return this.MineralData; }
         public EveSystem[] GetEveSystemData() { return this.EveSystemData; }
-
         public XmlDocument GetApiXmlData() { return this.ApiXmlData; }
         public XmlNamespaceManager GetApiXmlDataNamespaceManager() { return this.ApiXmlDataNS; }
         public DataTable GetProfitDataTable() { return this.profitData; }
 
         /**
+         * UpdateProfitData
          * 
+         * Using prices data in OreData and MineralData, this method manages to calculate all the data which is shown in the main frame.
+         * Produced data is stored in profitData parameter of type DataTable
+         * 
+         * Settings are used as input to provide info like player's yield/cycle/...
          * */
         public void UpdateProfitData(SettingsManager settings)
         {
@@ -107,6 +118,8 @@ namespace dEVEOre
 
         /**
          * Constructor
+         * 
+         * Also creates Columns in this.profitData (type DataTable)
          * */
         public DataManager()
         {
@@ -115,7 +128,7 @@ namespace dEVEOre
                 this.LoadOreData(ORE_DATAFILE_PATH);
                 this.LoadMineralData(MINERAL_DATAFILE_PATH);
                 this.LoadEveSystemData(EVESYSTEM_DATAFILE_PATH);
-                this.LoadRefineData(REFINE_DATAFILE_PATH);
+                //this.LoadRefineData(REFINE_DATAFILE_PATH);
                 this.ApiXmlData = new XmlDocument();
                 this.RefineData = new RefineTable(this.OreData.Length, this.MineralData.Length, REFINE_DATAFILE_PATH);
 
@@ -137,7 +150,13 @@ namespace dEVEOre
             }
         }
 
-        public void UpdatePrices(EveSystem currentSystem)
+        /**
+         * UpdatePrices
+         * 
+         * Update prices in OreData and MineralData relative parameters.
+         * XmlData is updated prior to this using UpdateXmlData (see below).
+         * */
+        public void UpdatePrices()
         {
             double price = 0;
             for (int k = 0; k < this.OreData.Length; k++)
@@ -166,14 +185,31 @@ namespace dEVEOre
             }
         }
 
+        /**
+         * UpdateXmlData
+         * 
+         * Using request from GetXmlRequestString, this updates XmlDocument ApiXmlData from which specific nodes will be read.
+         * */
         public void UpdateXmlData(EveSystem currentSystem)
         {
             String requestString = this.GetXmlRequestString(currentSystem);
 
-            this.ApiXmlData.Load(requestString);
-            this.ApiXmlDataNS = new XmlNamespaceManager(this.GetApiXmlData().NameTable);
+            try // typical exception: server not found when not connected to the internet!
+            {
+                this.ApiXmlData.Load(requestString);
+                this.ApiXmlDataNS = new XmlNamespaceManager(this.GetApiXmlData().NameTable);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
+        /**
+         * GetXmlRequestString
+         * 
+         * This creates a request string to send to EVE API server containing info on considered objects (typeid) and system (usesystem).
+         * */
         private String GetXmlRequestString(EveSystem currentSystem)
         {
             System.Text.StringBuilder res = new System.Text.StringBuilder();
@@ -193,6 +229,11 @@ namespace dEVEOre
             return res.ToString();
         }
 
+        /**
+         * GetEveSystemById
+         * 
+         * Name speaks for itself!
+         * */
         public EveSystem GetEveSystemById(int id)
         {
             for (int k = 0; k < this.EveSystemData.Length; k++)
@@ -205,6 +246,9 @@ namespace dEVEOre
             return new EveSystem(-1, "error");
         }
 
+        /**
+         * GetEveSystemByName
+         * */
         public EveSystem GetEveSystemByName(String name)
         {
             for (int k = 0; k < this.EveSystemData.Length; k++)
@@ -217,6 +261,11 @@ namespace dEVEOre
             return new EveSystem(-1, "error");
         }
 
+        /**
+         * LoadOreData
+         * 
+         * Loads Ore data in this.OreData array from specified .dat file (datapath)
+         * */
         private void LoadOreData(String datapath)
         {
             try
@@ -255,6 +304,11 @@ namespace dEVEOre
             }
         }
 
+        /**
+         * LoadMineralData
+         * 
+         * Loads Mineral data in this.MineralData array from specified .dat file (datapath)
+         * */
         private void LoadMineralData(String datapath)
         {
             try
@@ -286,6 +340,11 @@ namespace dEVEOre
             }
         }
 
+        /**
+         * LoadEveSystemData
+         * 
+         * Loads System data in this.EveSystemData array from specified .dat file (datapath)
+         * */
         private void LoadEveSystemData(string datapath)
         {
             try
@@ -317,11 +376,11 @@ namespace dEVEOre
             }
         }
 
-        private void LoadRefineData(String datapath)
-        {
-
-        }
-
+        /**
+         * GetDataFileLineNumber
+         * 
+         * Computes the number of lines in file specified by path (used to create array of adapted dimension!)
+         * */
         private int GetDataFileLineNumber(String path)
         {
             int res = 0;

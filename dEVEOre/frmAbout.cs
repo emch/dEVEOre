@@ -23,7 +23,11 @@ namespace dEVEOre
 
         private void frmAbout_Load(object sender, EventArgs e)
         {
-            
+            this.Text = Program.PROGRAM_NAME + " - About";
+            this.labelVersion.Text = Program.PROGRAM_NAME + " v" +
+                Program.PROGRAM_VERSION.ToString() + "." +
+                Program.PROGRAM_VERSION_NEWFEATURE.ToString() + "." +
+                Program.PROGRAM_VERSION_BUG.ToString();
         }
     }
 }

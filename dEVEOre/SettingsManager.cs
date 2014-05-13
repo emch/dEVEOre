@@ -14,7 +14,7 @@ namespace dEVEOre
         private DateTime lastUpdate;
 
         private int cycle; // in seconds
-        private int yield;
+        private double yield;
         private double netYield; // in percents
         private double taxes; // in percents
 
@@ -32,7 +32,7 @@ namespace dEVEOre
 
         public int GetUpdateTimer() { return this.updateTimer; }
         public int GetCycle() { return this.cycle; }
-        public int GetYield() { return this.yield; }
+        public double GetYield() { return this.yield; }
         public double GetNetYield() { return this.netYield; }
         public double GetTaxes() { return this.taxes; }
         public DateTime GetLastUpdate() { return this.lastUpdate; }
@@ -43,7 +43,7 @@ namespace dEVEOre
             this.lastUpdate = DateTime.Now;
         }
 
-        public void UpdateSettings(int seconds, int cycle, int yield, double netYield, double taxes, int currentSystem)
+        public void UpdateSettings(int seconds, int cycle, double yield, double netYield, double taxes, int currentSystem)
         {
             this.updateTimer = seconds;
             this.cycle = cycle;
@@ -72,7 +72,7 @@ namespace dEVEOre
 
                     this.updateTimer = int.Parse(split[0]);
                     this.cycle = int.Parse(split[1]);
-                    this.yield = int.Parse(split[2]);
+                    this.yield = double.Parse(split[2], CultureInfo.InvariantCulture);
                     this.netYield = double.Parse(split[3], CultureInfo.InvariantCulture);
                     this.taxes = double.Parse(split[4], CultureInfo.InvariantCulture);
                     this.currentSystem = int.Parse(split[5]);
@@ -89,7 +89,7 @@ namespace dEVEOre
                 this.currentSystem = 30002187;
 
                 // Saving these values to config file
-                String saveString = this.updateTimer.ToString() + " " + this.cycle.ToString() + " " + this.yield.ToString() + " " + this.netYield.ToString(CultureInfo.InvariantCulture) + " " + this.taxes.ToString(CultureInfo.InvariantCulture) + " " + this.currentSystem.ToString();
+                String saveString = this.updateTimer.ToString() + " " + this.cycle.ToString() + " " + this.yield.ToString(CultureInfo.InvariantCulture) + " " + this.netYield.ToString(CultureInfo.InvariantCulture) + " " + this.taxes.ToString(CultureInfo.InvariantCulture) + " " + this.currentSystem.ToString();
                 TextWriter tw = new StreamWriter(CONFIG_FILE_PATH);
                 tw.WriteLine(saveString);
                 tw.Close();

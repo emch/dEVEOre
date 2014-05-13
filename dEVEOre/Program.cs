@@ -11,7 +11,7 @@ namespace dEVEOre
         public static String    PROGRAM_NAME = "dEVEOre";
         public static int       PROGRAM_VERSION = 1;
         public static int       PROGRAM_VERSION_NEWFEATURE = 0;
-        public static int       PROGRAM_VERSION_BUG = 1;
+        public static int       PROGRAM_VERSION_BUG = 2;
 
         /// <summary>
         /// Point d'entrée principal de l'application.

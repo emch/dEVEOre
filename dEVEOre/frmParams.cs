@@ -24,7 +24,7 @@ namespace dEVEOre
 
             this.cmbTimerSetting.Text = settings.GetUpdateTimer().ToString();
             this.txtCycle.Text = settings.GetCycle().ToString();
-            this.txtYield.Text = settings.GetYield().ToString();
+            this.txtYield.Text = settings.GetYield().ToString(CultureInfo.InvariantCulture);
             this.txtRefineOutput.Text = settings.GetNetYield().ToString(CultureInfo.InvariantCulture);
             this.txtTaxes.Text = settings.GetTaxes().ToString(CultureInfo.InvariantCulture);
         }
@@ -40,7 +40,7 @@ namespace dEVEOre
             {
                 this.parent.GetSettingsManager().UpdateSettings(int.Parse(this.cmbTimerSetting.Text),
                     int.Parse(this.txtCycle.Text),
-                    int.Parse(this.txtYield.Text),
+                    double.Parse(this.txtYield.Text, CultureInfo.InvariantCulture),
                     double.Parse(this.txtRefineOutput.Text, CultureInfo.InvariantCulture),
                     double.Parse(this.txtTaxes.Text, CultureInfo.InvariantCulture),
                     this.parent.GetSettingsManager().GetCurrentSystem());

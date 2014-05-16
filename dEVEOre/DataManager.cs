@@ -121,11 +121,11 @@ namespace dEVEOre
          * 
          * Also creates Columns in this.profitData (type DataTable)
          * */
-        public DataManager()
+        public DataManager(SettingsManager settings)
         {
             try
             {
-                this.LoadOreData(ORE_DATAFILE_PATH);
+                this.LoadOreData(ORE_DATAFILE_PATH, settings.GetSelectedOre());
                 this.LoadMineralData(MINERAL_DATAFILE_PATH);
                 this.LoadEveSystemData(EVESYSTEM_DATAFILE_PATH);
                 //this.LoadRefineData(REFINE_DATAFILE_PATH);
@@ -266,7 +266,7 @@ namespace dEVEOre
          * 
          * Loads Ore data in this.OreData array from specified .dat file (datapath)
          * */
-        private void LoadOreData(String datapath)
+        private void LoadOreData(String datapath, int selectedOre)
         {
             try
             {
@@ -274,9 +274,10 @@ namespace dEVEOre
 
                 using (StreamReader sr = new StreamReader(datapath))
                 {
-                    String line; int k = 0;
+                    String line; int k = 0; int baseOreCounter = 0;
                     String[] split;
                     String newOreName; int newOreId; int newOreBaseOreId; double newOrePercentIncreasedYield; double newOreVolumePerUnit;
+                    double newOreSecurity; bool newOreSelected = false;
                     while ((line = sr.ReadLine()) != null)
                     {
                         // Splitting along " character
@@ -287,12 +288,20 @@ namespace dEVEOre
                         newOrePercentIncreasedYield = double.Parse(split[1], CultureInfo.InvariantCulture);
                         newOreBaseOreId = int.Parse(split[2]);
                         newOreVolumePerUnit = double.Parse(split[3], CultureInfo.InvariantCulture);
+                        newOreSecurity = double.Parse(split[4], CultureInfo.InvariantCulture);
+
+                        if (newOrePercentIncreasedYield == 0) // only base ore are described as selected or not
+                        {
+                            newOreSelected = true; //(selectedOre && Convert.ToInt32(Math.Pow(baseOreCounter,2));
+                        }
 
                         this.OreData[k] = new Ore(newOreId,
                             newOreName,
                             newOreBaseOreId,
                             newOrePercentIncreasedYield,
-                            newOreVolumePerUnit);
+                            newOreVolumePerUnit,
+                            newOreSecurity,
+                            newOreSelected);
 
                         k += 1;
                     }

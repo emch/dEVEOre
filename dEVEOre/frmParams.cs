@@ -43,7 +43,8 @@ namespace dEVEOre
                     double.Parse(this.txtYield.Text, CultureInfo.InvariantCulture),
                     double.Parse(this.txtRefineOutput.Text, CultureInfo.InvariantCulture),
                     double.Parse(this.txtTaxes.Text, CultureInfo.InvariantCulture),
-                    this.parent.GetSettingsManager().GetCurrentSystem());
+                    this.parent.GetSettingsManager().GetCurrentSystem(),
+                    65536); // CHANGE LAST PARAMETER!
                 this.parent.GetSettingsManager().SaveSettings(SettingsManager.CONFIG_FILE_PATH);
 
                 // resetting update Timer

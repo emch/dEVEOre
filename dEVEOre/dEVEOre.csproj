@@ -102,6 +102,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -114,6 +115,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\F1Help_7644.png" />
+    <None Include="Resources\UpdatedJscriptIntelliSense_10740.png" />
+    <None Include="Resources\testwindowtoolbarcodecoverage.png" />
+    <None Include="Resources\HighContrast.png" />
+    <None Include="Resources\SourceControlManager_13154.png" />
+    <None Include="Resources\Clearallrequests_8816.png" />
     <Content Include="scordite_64.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

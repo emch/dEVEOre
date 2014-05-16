@@ -24,11 +24,14 @@ namespace dEVEOre
 
         private double maxBuyPrice;             // max buy order on the market
 
+        private double security;                // sector's max security where you can find this ore
+        private bool isSelected;                // true if Ore is selected to appear in tabs/requests/...
+
         // Methods
         /**
          * Constructor
          * */
-        public Ore(int id, String name, int baseOreId, double percentIncreasedYield, double volumePerUnit)
+        public Ore(int id, String name, int baseOreId, double percentIncreasedYield, double volumePerUnit, double security, bool selected)
         {
             this.id = id;
             this.name = name;
@@ -36,6 +39,8 @@ namespace dEVEOre
             this.percentIncreasedYield = percentIncreasedYield;
             this.maxBuyPrice = 0;
             this.volumePerUnit = volumePerUnit;
+            this.security = security;
+            this.isSelected = selected;
         }
 
         // (Setter, see Mineral.cs)

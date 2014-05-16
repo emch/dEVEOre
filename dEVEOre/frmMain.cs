@@ -83,7 +83,7 @@ namespace dEVEOre
             // Initialize data manager
             try
             {
-                this.data = new DataManager();
+                this.data = new DataManager(this.settings);
             }
             catch (Exception ex)
             {

@@ -42,6 +42,7 @@
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageSystemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,7 +55,6 @@
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this.cmbEveSystem = new System.Windows.Forms.ComboBox();
-            this.manageSystemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -159,6 +159,13 @@
             this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.preferencesToolStripMenuItem.Text = "Settings";
             this.preferencesToolStripMenuItem.Click += new System.EventHandler(this.preferencesToolStripMenuItem_Click);
+            // 
+            // manageSystemsToolStripMenuItem
+            // 
+            this.manageSystemsToolStripMenuItem.Name = "manageSystemsToolStripMenuItem";
+            this.manageSystemsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.manageSystemsToolStripMenuItem.Text = "Systems";
+            this.manageSystemsToolStripMenuItem.Click += new System.EventHandler(this.manageSystemsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -287,13 +294,6 @@
             this.cmbEveSystem.Size = new System.Drawing.Size(136, 21);
             this.cmbEveSystem.TabIndex = 4;
             this.cmbEveSystem.SelectedIndexChanged += new System.EventHandler(this.cmbEveSystem_SelectedIndexChanged);
-            // 
-            // manageSystemsToolStripMenuItem
-            // 
-            this.manageSystemsToolStripMenuItem.Enabled = false;
-            this.manageSystemsToolStripMenuItem.Name = "manageSystemsToolStripMenuItem";
-            this.manageSystemsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.manageSystemsToolStripMenuItem.Text = "Systems";
             // 
             // frmMain
             // 

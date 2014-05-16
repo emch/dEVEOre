@@ -69,6 +69,12 @@
     <Compile Include="frmParams.Designer.cs">
       <DependentUpon>frmParams.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSystems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSystems.Designer.cs">
+      <DependentUpon>frmSystems.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mineral.cs" />
     <Compile Include="Ore.cs" />
     <Compile Include="Program.cs" />
@@ -84,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmParams.resx">
       <DependentUpon>frmParams.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSystems.resx">
+      <DependentUpon>frmSystems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

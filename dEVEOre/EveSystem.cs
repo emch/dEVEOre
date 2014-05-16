@@ -29,5 +29,9 @@ namespace dEVEOre
         // (Getters)
         public int GetId() { return this.id; }
         public String GetName() { return this.name; }
+
+        // Setters
+        public void SetId(int id) { this.id = id; }
+        public void SetName(String name) { this.name = name; }
     }
 }

@@ -20,6 +20,7 @@ namespace dEVEOre
 
         private frmParams       frmParams;
         private frmAbout        frmAbout;
+        private frmSystems      frmSystems;
 
         private EveSystem       currentSystem;
 
@@ -52,6 +53,12 @@ namespace dEVEOre
         {
             this.frmAbout = new frmAbout();
             this.frmAbout.Show();
+        }
+
+        private void manageSystemsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.frmSystems = new frmSystems(this, this.data);
+            this.frmSystems.Show();
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -90,16 +97,27 @@ namespace dEVEOre
             this.UpdateTimerInterval(this.settings.GetUpdateTimer());
 
             // add EveSystem name to cmbEveSystem list
-            for (int k = 0; k < this.data.GetEveSystemData().Length; k++)
-            {
-                this.cmbEveSystem.Items.Add(this.data.GetEveSystemData()[k].GetName());
-            }
+            this.UpdateSystemCmb();
 
             this.currentSystem = this.data.GetEveSystemById(this.settings.GetCurrentSystem());
             this.cmbEveSystem.Text = this.currentSystem.GetName();
 
             // Update Xml/prices and results
             this.UpdateData(this.currentSystem);
+        }
+
+        /**
+         * UpdateSystemsCmb
+         * 
+         * Update combo box listing available systems.
+         * */
+        public void UpdateSystemCmb()
+        {
+            this.cmbEveSystem.Items.Clear();
+            for (int k = 0; k < this.data.GetEveSystemData().Length; k++)
+            {
+                this.cmbEveSystem.Items.Add(this.data.GetEveSystemData()[k].GetName());
+            }
         }
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)

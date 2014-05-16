@@ -31,7 +31,7 @@ namespace dEVEOre
         private const String ORE_DATAFILE_PATH = "data/ore.dat";
         private const String MINERAL_DATAFILE_PATH = "data/minerals.dat";
         private const String REFINE_DATAFILE_PATH = "data/refine.dat";
-        private const String EVESYSTEM_DATAFILE_PATH = "data/systems.dat";
+        public const String EVESYSTEM_DATAFILE_PATH = "data/systems.dat";
 
         // Methods
 
@@ -345,7 +345,7 @@ namespace dEVEOre
          * 
          * Loads System data in this.EveSystemData array from specified .dat file (datapath)
          * */
-        private void LoadEveSystemData(string datapath)
+        public void LoadEveSystemData(string datapath)
         {
             try
             {
@@ -393,6 +393,46 @@ namespace dEVEOre
                 throw new System.Exception(ex.Message);
             }
             return res;
+        }
+
+        /**
+         * AddSystem
+         * 
+         * Adds considered system to EveSystemData array.
+         * */
+        public void AddSystem(EveSystem system)
+        {
+            EveSystem[] tmpArray = new EveSystem[this.EveSystemData.Length+1];
+            for (int k=0; k<this.EveSystemData.Length;k++)
+            {
+                tmpArray[k] = this.EveSystemData[k];
+            }
+            tmpArray[tmpArray.Length-1] = system;
+
+            this.EveSystemData = tmpArray;
+        }
+
+        /**
+         * DeleteSystem
+         * 
+         * Delete a system knowing its index in this.EveSystemData.
+         * */
+        public void DeleteSystem(int index)
+        {
+            EveSystem[] tmpArray = new EveSystem[this.EveSystemData.Length - 1];
+            for (int k = 0; k < this.EveSystemData.Length; k++)
+            {
+                if (k < index)
+                {
+                    tmpArray[k] = this.EveSystemData[k];
+                }
+                else if (k > index)
+                {
+                    tmpArray[k-1] = this.EveSystemData[k];
+                }
+            }
+
+            this.EveSystemData = tmpArray;
         }
     }
 }

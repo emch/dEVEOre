@@ -25,13 +25,13 @@ namespace dEVEOre
         private double maxBuyPrice;             // max buy order on the market
 
         private double security;                // sector's max security where you can find this ore
-        private bool isSelected;                // true if Ore is selected to appear in tabs/requests/...
+        private uint isSelected;                // true if Ore is selected to appear in tabs/requests/...
 
         // Methods
         /**
          * Constructor
          * */
-        public Ore(int id, String name, int baseOreId, double percentIncreasedYield, double volumePerUnit, double security, bool selected)
+        public Ore(int id, String name, int baseOreId, double percentIncreasedYield, double volumePerUnit, double security, uint selected)
         {
             this.id = id;
             this.name = name;
@@ -56,5 +56,7 @@ namespace dEVEOre
         public double GetPercentIncreasedYield() { return this.percentIncreasedYield; }
         public double GetMaxBuyPrice() { return this.maxBuyPrice; }
         public double GetVolumePerUnit() { return this.volumePerUnit; }
+        public double GetSecurity() { return this.security; }
+        public uint IsSelected() { return this.isSelected; }
     }
 }

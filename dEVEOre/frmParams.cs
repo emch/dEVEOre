@@ -32,8 +32,10 @@ namespace dEVEOre
         private void frmParams_Load(object sender, EventArgs e)
         {
             this.Text = Program.PROGRAM_NAME + " - Parameters";
+            this.UpdateLists();
         }
 
+        // TODO: update selected ore in parent.DataManager !!
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -44,7 +46,7 @@ namespace dEVEOre
                     double.Parse(this.txtRefineOutput.Text, CultureInfo.InvariantCulture),
                     double.Parse(this.txtTaxes.Text, CultureInfo.InvariantCulture),
                     this.parent.GetSettingsManager().GetCurrentSystem(),
-                    65536); // CHANGE LAST PARAMETER!
+                    this.GetSelectedBaseOres());
                 this.parent.GetSettingsManager().SaveSettings(SettingsManager.CONFIG_FILE_PATH);
 
                 // resetting update Timer
@@ -60,9 +62,41 @@ namespace dEVEOre
             this.Close();
         }
 
-        private void cmbTimerSetting_SelectedIndexChanged(object sender, EventArgs e)
+        private void UpdateLists()
         {
+            this.lstOre.Items.Clear();
+            this.lstOreFollowed.Items.Clear();
 
+            Ore[] tmpOreData = this.parent.GetDataManager().GetOreData();
+            for (int k = 0; k < tmpOreData.Length; k++)
+            {
+                if (tmpOreData[k].IsSelected() > 0 && tmpOreData[k].GetPercentIncreasedYield() == 0) //
+                { // this is a base ore and its selected
+                    this.lstOreFollowed.Items.Add(tmpOreData[k].GetName());
+                }
+                else if (tmpOreData[k].GetPercentIncreasedYield() == 0)
+                {
+                    this.lstOre.Items.Add(tmpOreData[k].GetName());
+                }
+            }
+        }
+
+        private uint GetSelectedBaseOres()
+        {
+            uint res = 0; uint baseOreCounter = 1;
+            Ore[] tmpOreData = this.parent.GetDataManager().GetOreData();
+            for (int k = 0; k < this.lstOreFollowed.Items.Count; k++)
+            {
+                for (int j = 0; j < tmpOreData.Length; j++)
+                {
+                    if (this.lstOreFollowed.Items[k].ToString() == tmpOreData[j].GetName() && tmpOreData[j].GetPercentIncreasedYield() == 0)
+                    {
+                        res += baseOreCounter;
+                        baseOreCounter *= 2;
+                    }
+                }
+            }
+            return res;
         }
     }
 }

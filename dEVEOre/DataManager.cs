@@ -266,7 +266,7 @@ namespace dEVEOre
          * 
          * Loads Ore data in this.OreData array from specified .dat file (datapath)
          * */
-        private void LoadOreData(String datapath, int selectedOre)
+        private void LoadOreData(String datapath, uint selectedOre)
         {
             try
             {
@@ -274,10 +274,11 @@ namespace dEVEOre
 
                 using (StreamReader sr = new StreamReader(datapath))
                 {
-                    String line; int k = 0; int baseOreCounter = 0;
+                    String line; int k = 0; uint baseOreCounter = 1;
                     String[] split;
                     String newOreName; int newOreId; int newOreBaseOreId; double newOrePercentIncreasedYield; double newOreVolumePerUnit;
-                    double newOreSecurity; bool newOreSelected = false;
+                    double newOreSecurity; uint newOreSelected = 0;
+                    
                     while ((line = sr.ReadLine()) != null)
                     {
                         // Splitting along " character
@@ -292,7 +293,8 @@ namespace dEVEOre
 
                         if (newOrePercentIncreasedYield == 0) // only base ore are described as selected or not
                         {
-                            newOreSelected = true; //(selectedOre && Convert.ToInt32(Math.Pow(baseOreCounter,2));
+                            newOreSelected = selectedOre & baseOreCounter; //   reading single bit in int (not working)
+                            baseOreCounter *= 2;
                         }
 
                         this.OreData[k] = new Ore(newOreId,
@@ -301,7 +303,7 @@ namespace dEVEOre
                             newOrePercentIncreasedYield,
                             newOreVolumePerUnit,
                             newOreSecurity,
-                            newOreSelected);
+                            newOreSelected); // if newOreSelected > 0 then bit was present in int
 
                         k += 1;
                     }

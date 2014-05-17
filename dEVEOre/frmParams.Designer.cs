@@ -44,6 +44,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -52,7 +53,6 @@
             this.cmbSec = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.lstOre = new System.Windows.Forms.ListBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -148,7 +148,6 @@
             this.cmbTimerSetting.Name = "cmbTimerSetting";
             this.cmbTimerSetting.Size = new System.Drawing.Size(44, 21);
             this.cmbTimerSetting.TabIndex = 12;
-            this.cmbTimerSetting.SelectedIndexChanged += new System.EventHandler(this.cmbTimerSetting_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -225,6 +224,15 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Ore settings";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(188, 20);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(72, 13);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "Selected Ore:";
+            // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(126, 152);
@@ -275,7 +283,7 @@
             // 
             this.cmbSec.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSec.FormattingEnabled = true;
-            this.cmbSec.Location = new System.Drawing.Point(106, 17);
+            this.cmbSec.Location = new System.Drawing.Point(118, 17);
             this.cmbSec.Name = "cmbSec";
             this.cmbSec.Size = new System.Drawing.Size(50, 21);
             this.cmbSec.TabIndex = 2;
@@ -285,9 +293,9 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(12, 20);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(88, 13);
+            this.label8.Size = new System.Drawing.Size(100, 13);
             this.label8.TabIndex = 1;
-            this.label8.Text = "Show Ore in sec:";
+            this.label8.Text = "Show Ore from sec:";
             // 
             // lstOre
             // 
@@ -296,15 +304,6 @@
             this.lstOre.Name = "lstOre";
             this.lstOre.Size = new System.Drawing.Size(114, 160);
             this.lstOre.TabIndex = 0;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(188, 20);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(72, 13);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "Selected Ore:";
             // 
             // frmParams
             // 
